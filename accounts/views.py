@@ -8,8 +8,8 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.encoding import force_str
-from django.contrib.auth import login
-from django.contrib.auth import authenticate
+from django.contrib.auth import login, authenticate, logout
+
 
 from .models import CustomUser
 from .forms import CustomUserCreationForm, MyLoginForm
@@ -103,3 +103,10 @@ class LoginView(View):
         else:
 
             return render(request, self.template_name, {'form': form})
+
+
+class LogOutView(View):
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('home'
+                        )

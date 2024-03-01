@@ -1,5 +1,7 @@
-home
+{% extends 'base.html' %}
 
 {% if user.is_authenticated %}
     {{ user.username }}
+{% else %}
+Home
 {% endif %}
