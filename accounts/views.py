@@ -22,7 +22,7 @@ class HomeView(TemplateView):
 
 class SignupView(View):
     form_class = CustomUserCreationForm
-    template_name = 'accounts/registration/signup.html'
+    template_name = 'registration/signup.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
@@ -38,7 +38,7 @@ class SignupView(View):
             # Send email confirmation
             current_site = get_current_site(request)
             subject = 'Activate your account'
-            message = render_to_string('accounts/registration/account_activation_email.html', {
+            message = render_to_string('registration/account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -51,7 +51,7 @@ class SignupView(View):
 
 
 class AccountActivationSentView(TemplateView):
-    template_name = 'accounts/registration/account_activation_sent.html'
+    template_name = 'registration/account_activation_sent.html'
 
 
 class ActivateAccountView(View):
@@ -73,12 +73,12 @@ class ActivateAccountView(View):
 
 
 class AccountActivationComplete(LoginRequiredMixin, TemplateView):
-    template_name = 'accounts/registration/account_activation_complete.html'
+    template_name = 'registration/account_activation_complete.html'
 
 
 class LoginView(View):
     form_class = MyLoginForm
-    template_name = 'accounts/registration/login.html'
+    template_name = 'registration/login.html'
 
     def get(self, request):
         form = self.form_class()
@@ -108,5 +108,4 @@ class LoginView(View):
 class LogOutView(View):
     def post(self, request, *args, **kwargs):
         logout(request)
-        return redirect('home'
-                        )
+        return redirect('home')
