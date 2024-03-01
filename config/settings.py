@@ -138,3 +138,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'hosein.noob.dj@gmail.com'
 EMAIL_HOST_PASSWORD = 'cirx fxuu sung uctz'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.authentication.EmailBackend',
+]

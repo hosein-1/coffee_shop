@@ -1,5 +1,5 @@
 from django.contrib.sites.shortcuts import get_current_site
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponse
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.template.loader import render_to_string
@@ -9,10 +9,15 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.encoding import force_str
 from django.contrib.auth import login
+from django.contrib.auth import authenticate
 
 from .models import CustomUser
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, MyLoginForm
 from .tokens import account_activation_token
+
+
+class HomeView(TemplateView):
+    template_name = 'home.html'
 
 
 class SignupView(View):
@@ -59,8 +64,9 @@ class ActivateAccountView(View):
 
         if user is not None and account_activation_token.check_token(user, token):
             user.email_confirmed = True
+            user.is_active = True
             user.save()
-            login(request, user)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('account_activation_complete')
         else:
             return HttpResponseBadRequest('Activation link is invalid!')
@@ -68,3 +74,32 @@ class ActivateAccountView(View):
 
 class AccountActivationComplete(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/registration/account_activation_complete.html'
+
+
+class LoginView(View):
+    form_class = MyLoginForm
+    template_name = 'accounts/registration/login.html'
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(data=request.POST)
+        if form.is_valid():
+            user = authenticate(
+                request,
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password']
+            )
+
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+
+            else:
+                return HttpResponse('رمز و نام کاربری صحیح نیست')
+
+        else:
+
+            return render(request, self.template_name, {'form': form})
