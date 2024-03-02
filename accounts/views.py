@@ -9,10 +9,11 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.encoding import force_str
 from django.contrib.auth import login, authenticate, logout
-
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
 
 from .models import CustomUser
-from .forms import CustomUserCreationForm, MyLoginForm
+from .forms import CustomUserCreationForm, MyLoginForm, AccountForm
 from .tokens import account_activation_token
 
 
@@ -46,7 +47,7 @@ class SignupView(View):
             })
             user.email_user(subject, message)
 
-            return redirect('account_activation_sent')
+            return redirect('accounts:account_activation_sent')
         return render(request, self.template_name, {'form': form})
 
 
@@ -67,7 +68,7 @@ class ActivateAccountView(View):
             user.is_active = True
             user.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect('account_activation_complete')
+            return redirect('accounts:account_activation_complete')
         else:
             return HttpResponseBadRequest('Activation link is invalid!')
 
@@ -94,8 +95,11 @@ class LoginView(View):
             )
 
             if user is not None:
+
                 login(request, user)
-                return redirect('home')
+                if request.GET['next']:
+                    return redirect(request.GET['next'])
+                return redirect('accounts:home')
 
             else:
                 return HttpResponse('رمز و نام کاربری صحیح نیست')
@@ -108,4 +112,16 @@ class LoginView(View):
 class LogOutView(View):
     def post(self, request, *args, **kwargs):
         logout(request)
-        return redirect('home')
+        return redirect('accounts:home')
+
+
+class AccountInfoView(LoginRequiredMixin, UpdateView):
+    model = CustomUser
+    form_class = AccountForm
+    template_name = 'accounts/user_info.html'
+    success_url = reverse_lazy('accounts:account_info')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+

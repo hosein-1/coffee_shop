@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}اطلاعات کاربری{% endblock %}
+
+{% block content %}
+  <h2>اطلاعات کاربری</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">ذخیره اطلاعات</button>
+  </form>
+
+  {{ user.email }}
+ {{ user.first_name }}
+{{ user.last_name }}
+{% endblock %}
