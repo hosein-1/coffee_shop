@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from django.views.generics import TemplateView
+from django.views.generic import TemplateView
 
 
 class AboutUsView(TemplateView):
     template_name = 'pages/about.html'
 
 
-class ContactUs(TemplateView):
+class ContactUsView(TemplateView):
     template_name = 'pages/contact_us.html'
