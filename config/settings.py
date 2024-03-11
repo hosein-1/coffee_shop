@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'pages.apps.PagesConfig',
 
+    'ckeditor',
+
 ]
 
 MIDDLEWARE = [
