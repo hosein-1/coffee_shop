@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
 
     'ckeditor',
+    'django_jalali',
 
 ]
 
