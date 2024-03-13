@@ -5,5 +5,19 @@
 {% block content %}
     {{ product.title }}
     {{ product.price }}
-    <img src="{{ product.image.url }}">
+    {% for comment in product.comments.all %}
+        {{ comment.body }}
+    {% endfor %}
+<!--    <img src="{{ product.image.url }}">-->
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'products:create_comment' product.id %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" value="ثبت">
+    </form>
+    {% else %}
+        <h4>برای ثبت نظر نیاز است وارد شوید</h4>
+        <a href="{% url 'accounts:login' %}">ورود</a>
+    {% endif %}
+
 {% endblock %}
