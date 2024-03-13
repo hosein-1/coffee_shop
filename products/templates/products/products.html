@@ -4,6 +4,6 @@
 
 {% block content %}
     {% for product in products %}
-        {{ product.title }}
+        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
     {% endfor %}
 {% endblock %}
