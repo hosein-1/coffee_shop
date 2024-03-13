@@ -93,9 +93,9 @@ class LoginView(View):
             if user is not None:
 
                 login(request, user)
-                if request.GET['next']:
+                if request.GET.get('next'):
                     return redirect(request.GET['next'])
-                return redirect('accounts:home')
+                return redirect('products:products_list')
 
             else:
                 return HttpResponse('رمز و نام کاربری صحیح نیست')
