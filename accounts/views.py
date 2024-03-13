@@ -17,10 +17,6 @@ from .forms import CustomUserCreationForm, MyLoginForm, AccountForm
 from .tokens import account_activation_token
 
 
-class HomeView(TemplateView):
-    template_name = 'home.html'
-
-
 class SignupView(View):
     form_class = CustomUserCreationForm
     template_name = 'registration/signup.html'
@@ -112,7 +108,7 @@ class LoginView(View):
 class LogOutView(View):
     def post(self, request, *args, **kwargs):
         logout(request)
-        return redirect('accounts:home')
+        return redirect('products:products_list')
 
 
 class AccountInfoView(LoginRequiredMixin, UpdateView):
