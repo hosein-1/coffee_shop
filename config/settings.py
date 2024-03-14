@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'products.apps.ProductsConfig',
     'pages.apps.PagesConfig',
+    'cart.apps.CartConfig',
 
     'ckeditor',
     'django_jalali',
