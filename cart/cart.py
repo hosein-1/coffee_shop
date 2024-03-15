@@ -9,3 +9,6 @@ class Cart:
         if not cart:
             cart = self.session['cart'] = {}
             self.cart = cart
+
+    def save(self):
+        self.session.modified = True
