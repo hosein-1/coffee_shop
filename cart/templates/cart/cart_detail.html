@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}سبد خرید{% endblock %}
+
+{% block content %}
+    <h1>سبد خرید</h1>
+    {% for item in cart %}
+        <div data-item-id="{{ item.product_obj.id }}">
+            <a href="{% url 'products:product_detail' item.product_obj.id %}">{{ item.product_obj.title }}</a>
+
+            <div class="actions">
+                <div class="quantity-add">+</div>
+                <div class="quantity-reduce">-</div>
+                <div class="quantity-remove">حذف</div>
+            </div>
+        </div>
+        <p>قیمت نهایی محصول: {{ item.total_price }}</p>
+
+    {% endfor %}
+
+    <div>
+        <p>: {{ cart.get_total_price }}قیمت کل</p>
+    </div>
+{% endblock %}
