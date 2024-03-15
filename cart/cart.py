@@ -14,7 +14,7 @@ class Cart:
     def add(self, product):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 1}
+            self.cart[product_id] = {'quantity': 1, 'price': product.price}
         else:
             self.cart[product_id]['quantity'] += 1
 
@@ -40,7 +40,7 @@ class Cart:
         self.save()
 
     def get_total_price(self):
-        return sum(item['product_obj'].price * item['quantity'] for item in self.cart.values())
+        return sum(item['price'] * item['quantity'] for item in self.cart.values())
 
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
