@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 
@@ -23,3 +23,12 @@ def add_to_cart(request, product_id):
 
     except:
         return JsonResponse({'error': 'invalid request'})
+
+
+def cart_detail(request):
+    cart = Cart(request)
+
+    context = {
+        'cart': cart,
+    }
+    return render(request, 'cart/cart_detail.html', context)
