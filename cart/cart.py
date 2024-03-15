@@ -9,10 +9,10 @@ class Cart:
         cart = self.session.get('cart')
         if not cart:
             cart = self.session['cart'] = {}
-            self.cart = cart
+        self.cart = cart
 
     def add(self, product):
-        product_id = str(product)
+        product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 1}
         else:
@@ -21,14 +21,14 @@ class Cart:
         self.save()
 
     def reduce(self, product):
-        product_id = str(product)
+        product_id = str(product.id)
         if self.cart[product_id]['quantity'] > 0:
             self.cart[product_id]['quantity'] -= 1
 
         self.save()
 
     def remove(self, product):
-        product_id = str(product)
+        product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
 
