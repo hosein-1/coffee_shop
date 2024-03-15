@@ -17,7 +17,7 @@ def add_to_cart(request, product_id):
 
         context = {
             'item_count': len(cart),
-            # 'total_price': cart.get_total_price()
+            'total_price': cart.get_total_price()
         }
         return JsonResponse(context)
 
@@ -32,3 +32,32 @@ def cart_detail(request):
         'cart': cart,
     }
     return render(request, 'cart/cart_detail.html', context)
+
+
+@require_POST
+def update_cart(request):
+    item_id = request.POST.get('item_id')
+    action = request.POST.get('action')
+
+    try:
+        product = get_object_or_404(Product, id=item_id)
+        cart = Cart(request)
+
+        if action == 'add':
+            cart.add(product)
+        
+        else:
+            cart.reduce(product)
+
+        context = {
+            'item_count': len(cart),
+            'total_price': cart.get_total_price(),
+            'quantity': cart.cart[item_id]['quantity'],
+            'item_total': cart.cart[item_id]['price'] * cart.cart[item_id]['quantity'],
+            'final_price': cart.get_total_price(),
+            'success': True,
+        }        
+
+        return JsonResponse(context)
+    except:
+        return JsonResponse({'sucess': False, 'error': 'item not found'}) 

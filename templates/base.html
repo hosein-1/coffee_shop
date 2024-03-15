@@ -12,7 +12,7 @@
         Cart
         {% with item_count=cart|length %}
         <span id="item-count">{{ item_count}}</span>
-        <span id="total-price"></span>
+        <span id="total-price">{{ cart.get_total_price }}</span>
         {% endwith %}
     </div>
     {% if user.is_authenticated %}

@@ -5,20 +5,59 @@
 {% block content %}
     <h1>سبد خرید</h1>
     {% for item in cart %}
-        <div data-item-id="{{ item.product_obj.id }}">
+        <div class="product-item" data-item-id="{{ item.product_obj.id }}">
             <a href="{% url 'products:product_detail' item.product_obj.id %}">{{ item.product_obj.title }}</a>
-
+            <p id="quantity-{{ item.product_obj.id }}">تعداد {{ item.quantity }}</p>
             <div class="actions">
                 <div class="quantity-add">+</div>
                 <div class="quantity-reduce">-</div>
                 <div class="quantity-remove">حذف</div>
             </div>
         </div>
-        <p>قیمت نهایی محصول: {{ item.total_price }}</p>
+        <p id="item-total-{{ item.product_obj.id }}">قیمت نهایی محصول: {{ item.total_price }}</p>
 
     {% endfor %}
 
     <div>
-        <p>: {{ cart.get_total_price }}قیمت کل</p>
+        <p id="item-final-price">: {{ cart.get_total_price }}قیمت کل</p>
     </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function(){
+
+        $('.quantity-add').on('click', function(){
+            updateQuantity($(this).closest('.product-item').data('item-id'), 'add');
+        }); 
+    
+        $('.quantity-reduce').on('click', function(){
+             updateQuantity($(this).closest('.product-item').data('item-id'), 'reduce');
+         }); 
+        
+        function updateQuantity(itemId, action){
+            $.ajax({
+                type: 'POST',
+                url: '{% url "cart:update_cart" %}',
+                data: {
+                    'item_id': itemId,
+                    'action': action,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response){
+                    if(response.success){
+                        $('#item-count').text(response.item_count);
+                        $('#total-price').text(response.total_price);
+                        $('#quantity-' + itemId).text(response.quantity);
+                        $('#item-total-' + itemId).text(response.item_total);
+                        $('#item-final-price').text(response.final_price);
+                    } else {
+                        alert('error updating quantity');
+                    }
+                }
+            });
+        }
+
+
+    });
+</script>
 {% endblock %}
