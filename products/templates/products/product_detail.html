@@ -37,7 +37,7 @@
                 data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
                 success: function(data) {
                     $('#item-count').text(data.item_count);
-                    $('#total-price').text(data.total_price);
+                    $('#cart-total-price').text(data.cart_total_price);
                 },
             });
         });

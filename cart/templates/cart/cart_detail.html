@@ -14,12 +14,14 @@
                 <div class="quantity-remove">حذف</div>
             </div>
         </div>
-        <p id="item-total-{{ item.product_obj.id }}">قیمت نهایی محصول: {{ item.total_price }}</p>
+      
+        <p> قیمت محصول: <span id="total-price-product-{{ item.product_obj.id }}">{{ item.total_price }}</span></p>
+        
 
     {% endfor %}
 
     <div>
-        <p id="item-final-price">: {{ cart.get_total_price }}قیمت کل</p>
+        <p>:قیمت کل <span id="final-price">{{ cart.get_total_price }}</span></p>
     </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -46,10 +48,10 @@
                 success: function(response){
                     if(response.success){
                         $('#item-count').text(response.item_count);
-                        $('#total-price').text(response.total_price);
+                        $('#cart-total-price').text(response.cart_total_price);
                         $('#quantity-' + itemId).text(response.quantity);
-                        $('#item-total-' + itemId).text(response.item_total);
-                        $('#item-final-price').text(response.final_price);
+                        $('#total-price-product-' + itemId).text(response.total_price_product);
+                        $('#final-price').text(response.final_price);
                     } else {
                         alert('error updating quantity');
                     }

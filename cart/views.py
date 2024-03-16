@@ -8,7 +8,7 @@ from .cart import Cart
 
 @require_POST
 def add_to_cart(request, product_id):
-    print(request.session.get('cart'))
+
     try:
         cart = Cart(request)
         product = get_object_or_404(Product, id=product_id)
@@ -17,7 +17,7 @@ def add_to_cart(request, product_id):
 
         context = {
             'item_count': len(cart),
-            'total_price': cart.get_total_price()
+            'cart_total_price': cart.get_total_price()
         }
         return JsonResponse(context)
 
@@ -51,9 +51,9 @@ def update_cart(request):
 
         context = {
             'item_count': len(cart),
-            'total_price': cart.get_total_price(),
+            'cart_total_price': cart.get_total_price(),
             'quantity': cart.cart[item_id]['quantity'],
-            'item_total': cart.cart[item_id]['price'] * cart.cart[item_id]['quantity'],
+            'total_price_product': cart.cart[item_id]['price'] * cart.cart[item_id]['quantity'],
             'final_price': cart.get_total_price(),
             'success': True,
         }        
