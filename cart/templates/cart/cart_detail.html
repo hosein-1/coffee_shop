@@ -11,11 +11,12 @@
             <div class="actions">
                 <div class="quantity-add">+</div>
                 <div class="quantity-reduce">-</div>
-                <div class="quantity-remove">حذف</div>
+                <div class="product-remove">حذف</div>
             </div>
+             <p> قیمت محصول: <span id="total-price-product-{{ item.product_obj.id }}">{{ item.total_price }}</span></p>
         </div>
       
-        <p> قیمت محصول: <span id="total-price-product-{{ item.product_obj.id }}">{{ item.total_price }}</span></p>
+
         
 
     {% endfor %}
@@ -34,7 +35,11 @@
     
         $('.quantity-reduce').on('click', function(){
              updateQuantity($(this).closest('.product-item').data('item-id'), 'reduce');
-         }); 
+         });
+
+          $('.product-remove').on('click', function(){
+             removeProduct($(this).closest('.product-item').data('item-id'));
+         });
         
         function updateQuantity(itemId, action){
             $.ajax({
@@ -54,6 +59,27 @@
                         $('#final-price').text(response.final_price);
                     } else {
                         alert('error updating quantity');
+                    }
+                }
+            });
+        }
+
+                function removeProduct(itemId){
+            $.ajax({
+                type: 'POST',
+                url: '{% url "cart:remove_product" %}',
+                data: {
+                    'item_id': itemId,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response){
+                    if(response.success){
+                        $('#item-count').text(response.item_count);
+                        $('#cart-total-price').text(response.cart_total_price);
+                        $('#final-price').text(response.final_price);
+                        $(`.product-item[data-item-id=${itemId}]`).remove();
+                    } else {
+                        alert('error remove product');
                     }
                 }
             });
