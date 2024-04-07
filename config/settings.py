@@ -156,4 +156,4 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # login urls
-LOGIN_URL = 'login'
+LOGIN_URL = 'accounts:login'
