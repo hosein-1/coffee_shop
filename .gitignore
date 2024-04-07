@@ -3,6 +3,6 @@ db.sqlite3
 Pipfile
 */migrations/*.py
 !*/migrations/__init__.py
-
+.vscode/
 media/*
 __pycache__
