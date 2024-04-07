@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/app.css">
+    <link rel="icon" href="images/fav-icon.png" type="images/png">
+    <title>Coffee Shop</title>
+    <script type="text/javascript">
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+</head>
+<body class="font-Dana bg-gray-100 dark:bg-zinc-800">
+
+
+        <div class="bg-orange-300 h-72">
+            <!-- <div class="h-72 bg-orange-300"></div> -->
+            <div class="absolute text-center left-0 xs:right-0 p-5 xs:rounded-xl mx-auto top-36 bg-white w-screen xs:w-[400px] h-[300px]">
+                <h3 class="text-zinc-700 text-xl xs:text-2xl font-MorabbaMedium pt-5">فعالسازی حساب</h3>
+                <div class="py-8 px-5 text-justify">
+                    <p>
+                        لینک فعال سازی به آدرس ایمیل شما ارسال شده است. لطفا صندوق ورودی خود را بررسی کنید و روی لینک فعال سازی کلیک کنید تا حساب خود فعال شود.
+                    </p>
+
+                </div>
+
+                <div>
+                    <a href="" class="absolute mx-auto right-0 left-0 bottom-11 hover:underline">بازگشت به صفحه ی اصلی</a>
+                </div>
+            </div>
+        </div>
+
+            
+
+
+    <script src="scripts/app.js"></script>
+</body>
+
+
+</html>

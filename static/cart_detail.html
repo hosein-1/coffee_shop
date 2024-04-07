@@ -1,13 +1,12 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Coffee shop {% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'styles/app.css' %}">
-    <link rel="icon" href="{% static 'images/fav-icon.png' %}" type="images/png">
+    <title>سبد خرید</title>
+    <link rel="stylesheet" href="./styles/app.css">
+    <link rel="icon" href="images/fav-icon.png" type="images/png">
     <script type="text/javascript">
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
@@ -199,54 +198,493 @@
                 fill="currentColor" />
         </symbol>
 
-        <symbol id="map-pin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor">
+        <symbol id="map-pin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
         </symbol>
 
-        <symbol id="envelope" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+        <symbol id="envelope" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
         </symbol>
-
+        
         <symbol id="instagram" viewBox="0 0 39 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M13.7405 5.9375C9.52393 5.9375 6.05884 9.39795 6.05884 13.6191V24.3809C6.05884 28.5974 9.51929 32.0625 13.7405 32.0625H24.5022C28.7188 32.0625 32.1838 28.6021 32.1838 24.3809V13.6191C32.1838 9.40259 28.7234 5.9375 24.5022 5.9375H13.7405ZM13.7405 8.3125H24.5022C27.4385 8.3125 29.8088 10.6829 29.8088 13.6191V24.3809C29.8088 27.3171 27.4385 29.6875 24.5022 29.6875H13.7405C10.8042 29.6875 8.43384 27.3171 8.43384 24.3809V13.6191C8.43384 10.6829 10.8042 8.3125 13.7405 8.3125ZM26.135 10.9102C25.5366 10.9102 25.0588 11.3879 25.0588 11.9863C25.0588 12.5847 25.5366 13.0625 26.135 13.0625C26.7334 13.0625 27.2112 12.5847 27.2112 11.9863C27.2112 11.3879 26.7334 10.9102 26.135 10.9102ZM19.1213 11.875C15.2017 11.875 11.9963 15.0803 11.9963 19C11.9963 22.9197 15.2017 26.125 19.1213 26.125C23.041 26.125 26.2463 22.9197 26.2463 19C26.2463 15.0803 23.041 11.875 19.1213 11.875ZM19.1213 14.25C21.7607 14.25 23.8713 16.3606 23.8713 19C23.8713 21.6394 21.7607 23.75 19.1213 23.75C16.4819 23.75 14.3713 21.6394 14.3713 19C14.3713 16.3606 16.4819 14.25 19.1213 14.25Z"
-                fill="currentColor" />
+            <path d="M13.7405 5.9375C9.52393 5.9375 6.05884 9.39795 6.05884 13.6191V24.3809C6.05884 28.5974 9.51929 32.0625 13.7405 32.0625H24.5022C28.7188 32.0625 32.1838 28.6021 32.1838 24.3809V13.6191C32.1838 9.40259 28.7234 5.9375 24.5022 5.9375H13.7405ZM13.7405 8.3125H24.5022C27.4385 8.3125 29.8088 10.6829 29.8088 13.6191V24.3809C29.8088 27.3171 27.4385 29.6875 24.5022 29.6875H13.7405C10.8042 29.6875 8.43384 27.3171 8.43384 24.3809V13.6191C8.43384 10.6829 10.8042 8.3125 13.7405 8.3125ZM26.135 10.9102C25.5366 10.9102 25.0588 11.3879 25.0588 11.9863C25.0588 12.5847 25.5366 13.0625 26.135 13.0625C26.7334 13.0625 27.2112 12.5847 27.2112 11.9863C27.2112 11.3879 26.7334 10.9102 26.135 10.9102ZM19.1213 11.875C15.2017 11.875 11.9963 15.0803 11.9963 19C11.9963 22.9197 15.2017 26.125 19.1213 26.125C23.041 26.125 26.2463 22.9197 26.2463 19C26.2463 15.0803 23.041 11.875 19.1213 11.875ZM19.1213 14.25C21.7607 14.25 23.8713 16.3606 23.8713 19C23.8713 21.6394 21.7607 23.75 19.1213 23.75C16.4819 23.75 14.3713 21.6394 14.3713 19C14.3713 16.3606 16.4819 14.25 19.1213 14.25Z" fill="currentColor"/>
         </symbol>
 
         <symbol id="telegram" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M31.0136 7.9292C32.3492 7.9292 32.7007 8.93937 32.3056 11.3112C31.8536 14.0234 30.5513 23.0033 29.5126 28.5933C29.1152 30.7324 28.3988 31.6547 27.3561 31.6547C26.783 31.6547 26.1116 31.376 25.3405 30.867C24.2955 30.1766 19.0199 26.6877 17.8743 25.8684C16.8293 25.1218 15.3877 24.2233 17.1959 22.4547C17.8395 21.8245 22.0567 17.7973 25.3421 14.6631C25.6928 14.3282 25.3991 13.8176 25.0096 13.8176C24.921 13.8176 24.8268 13.8445 24.7349 13.9055C20.3063 16.8426 14.1654 20.9189 13.384 21.4501C12.6026 21.9805 11.841 22.3209 10.8261 22.3209C10.3076 22.3209 9.72255 22.2322 9.03459 22.0343C7.49638 21.5926 5.99459 21.0661 5.40955 20.865C3.15726 20.0924 3.69163 19.0909 5.87901 18.1282C14.6491 14.2704 25.9976 9.56637 27.5643 8.91562C29.0907 8.28149 30.2243 7.9292 31.0136 7.9292ZM31.0136 5.5542C29.9306 5.5542 28.6268 5.90332 26.6547 6.72112L26.418 6.81928C17.9986 10.3153 10.3646 13.5595 4.92267 15.9535C4.07242 16.328 1.48605 17.4656 1.58659 19.8454C1.62934 20.8722 2.19459 22.2718 4.63926 23.1102L4.81976 23.172C5.50217 23.4071 6.92322 23.8971 8.37988 24.3159C9.26655 24.5708 10.0677 24.6943 10.8269 24.6943C12.1443 24.6943 13.1647 24.3183 13.9627 23.8805C13.9588 24.0135 13.9619 24.1473 13.9722 24.2819C14.1163 26.1122 15.5318 27.116 16.3773 27.7161L16.4953 27.8C17.7437 28.693 23.3938 32.4257 24.0335 32.8477C25.2376 33.6425 26.3246 34.0281 27.3577 34.0281C28.9822 34.0281 31.0809 33.1604 31.8488 29.0263C32.578 25.1052 33.4203 19.6277 34.0354 15.6282C34.2975 13.9213 34.5128 12.5217 34.6498 11.7007C34.9261 10.0429 35.0527 8.16512 33.8993 6.80424C33.4148 6.23424 32.5218 5.5542 31.0136 5.5542Z"
-                fill="currentColor" />
+            <path d="M31.0136 7.9292C32.3492 7.9292 32.7007 8.93937 32.3056 11.3112C31.8536 14.0234 30.5513 23.0033 29.5126 28.5933C29.1152 30.7324 28.3988 31.6547 27.3561 31.6547C26.783 31.6547 26.1116 31.376 25.3405 30.867C24.2955 30.1766 19.0199 26.6877 17.8743 25.8684C16.8293 25.1218 15.3877 24.2233 17.1959 22.4547C17.8395 21.8245 22.0567 17.7973 25.3421 14.6631C25.6928 14.3282 25.3991 13.8176 25.0096 13.8176C24.921 13.8176 24.8268 13.8445 24.7349 13.9055C20.3063 16.8426 14.1654 20.9189 13.384 21.4501C12.6026 21.9805 11.841 22.3209 10.8261 22.3209C10.3076 22.3209 9.72255 22.2322 9.03459 22.0343C7.49638 21.5926 5.99459 21.0661 5.40955 20.865C3.15726 20.0924 3.69163 19.0909 5.87901 18.1282C14.6491 14.2704 25.9976 9.56637 27.5643 8.91562C29.0907 8.28149 30.2243 7.9292 31.0136 7.9292ZM31.0136 5.5542C29.9306 5.5542 28.6268 5.90332 26.6547 6.72112L26.418 6.81928C17.9986 10.3153 10.3646 13.5595 4.92267 15.9535C4.07242 16.328 1.48605 17.4656 1.58659 19.8454C1.62934 20.8722 2.19459 22.2718 4.63926 23.1102L4.81976 23.172C5.50217 23.4071 6.92322 23.8971 8.37988 24.3159C9.26655 24.5708 10.0677 24.6943 10.8269 24.6943C12.1443 24.6943 13.1647 24.3183 13.9627 23.8805C13.9588 24.0135 13.9619 24.1473 13.9722 24.2819C14.1163 26.1122 15.5318 27.116 16.3773 27.7161L16.4953 27.8C17.7437 28.693 23.3938 32.4257 24.0335 32.8477C25.2376 33.6425 26.3246 34.0281 27.3577 34.0281C28.9822 34.0281 31.0809 33.1604 31.8488 29.0263C32.578 25.1052 33.4203 19.6277 34.0354 15.6282C34.2975 13.9213 34.5128 12.5217 34.6498 11.7007C34.9261 10.0429 35.0527 8.16512 33.8993 6.80424C33.4148 6.23424 32.5218 5.5542 31.0136 5.5542Z" fill="currentColor"/>
         </symbol>
 
+       
+        <symbol id="truck" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="-3 0 32 32" version="1.1">
+        
+            <path d="M23.64 6.64h-13c-1.4 0-2.56 1.16-2.56 2.56v0.64h-1.32c-1.040 0-2.040 0.48-2.68 1.32l-2.56 3.32c-0.12 0.16-0.16 0.32-0.16 0.52v5.84h-0.48c-0.44 0-0.84 0.32-0.88 0.76-0.040 0.52 0.36 0.92 0.84 0.92h3.32c0.4 1.64 1.84 2.84 3.6 2.84s3.2-1.2 3.6-2.84h4.84c0.4 1.64 1.84 2.84 3.6 2.84s3.2-1.2 3.6-2.84h2c0.48 0 0.84-0.4 0.84-0.84v-12.48c-0.040-1.44-1.2-2.56-2.6-2.56zM5.44 12.2c0.32-0.4 0.8-0.64 1.32-0.64h1.32v2.56h-4.12l1.48-1.92zM7.76 23.68c-1.080 0-2-0.88-2-2s0.88-2 2-2 2 0.88 2 2-0.92 2-2 2zM19.76 23.68c-1.080 0-2-0.88-2-2s0.88-2 2-2 2 0.88 2 2-0.92 2-2 2zM24.48 20.84h-1.12c-0.4-1.64-1.84-2.84-3.6-2.84s-3.2 1.2-3.6 2.84h-4.8c-0.4-1.64-1.84-2.84-3.6-2.84s-3.2 1.2-3.6 2.84h-1.080v-5.040h5.84c0.48 0 0.84-0.4 0.84-0.84v-5.76c0-0.48 0.36-0.84 0.84-0.84h13c0.48 0 0.84 0.36 0.84 0.84v11.64z"/>
+        </symbol>
 
+        <symbol id="guarantee" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+        </symbol>
 
+        <symbol id="support" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M6,17 L6,11 L4.5,11 C3.67157288,11 3,11.6715729 3,12.5 L3,15.5 C3,16.3284271 3.67157288,17 4.5,17 L6,17 Z M13.9146471,20 L16.0584816,20 C16.7041272,20 17.2773354,19.5868549 17.4815065,18.9743416 L17.7094306,18.2905694 C17.7432317,18.1891661 17.7850711,18.0921054 17.8340988,18 L17.5,18 C17.2238576,18 17,17.7761424 17,17.5 L17,10.5 C17,10.2238576 17.2238576,10 17.5,10 L18,10 L18,8.98439023 C18,5.67068173 15.3137085,2.98439023 12,2.98439023 C8.6862915,2.98439023 6,5.67068173 6,8.98439023 L6,10 L6.5,10 C6.77614237,10 7,10.2238576 7,10.5 L7,17.5 C7,17.7761424 6.77614237,18 6.5,18 L4.5,18 C3.11928813,18 2,16.8807119 2,15.5 L2,12.5 C2,11.1192881 3.11928813,10 4.5,10 L5,10 L5,8.98439023 C5,5.11839698 8.13400675,1.98439023 12,1.98439023 C15.8659932,1.98439023 19,5.11839698 19,8.98439023 L19,10 L19.5,10 C20.8807119,10 22,11.1192881 22,12.5 L22,15.5 C22,16.8807119 20.8807119,18 19.5,18 C19.1180249,18 18.778905,18.2444238 18.6581139,18.6067972 L18.4301898,19.2905694 C18.0899047,20.3114248 17.1345576,21 16.0584816,21 L13.9146471,21 C13.7087289,21.5825962 13.1531094,22 12.5,22 L11.5,22 C10.6715729,22 10,21.3284271 10,20.5 C10,19.6715729 10.6715729,19 11.5,19 L12.5,19 C13.1531094,19 13.7087289,19.4174038 13.9146471,20 L13.9146471,20 Z M18,11 L18,17 L19.5,17 C20.3284271,17 21,16.3284271 21,15.5 L21,12.5 C21,11.6715729 20.3284271,11 19.5,11 L18,11 Z M11,20.5 C11,20.7761424 11.2238576,21 11.5,21 L12.5,21 C12.7761424,21 13,20.7761424 13,20.5 C13,20.2238576 12.7761424,20 12.5,20 L11.5,20 C11.2238576,20 11,20.2238576 11,20.5 Z"/>
+        </symbol>
 
-
-
-
-
-
-
-
-
+        <symbol id="trash" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+        </symbol>
+          
+            
 
 
     </svg>
 
-    <!-- Header -->
-    {% include 'navbar.html' %}
+    <!-- App Header -->
+    <header
+        class="fixed top-9 right-0 left-0 z-50 hidden md:flex items-center w-[98%] lg:w-[90%] h-24 px-5 lg:px-10 py-5 mx-auto bg-black/50 rounded-3xl backdrop-blur[6px]">
 
-    {% block body %}
-    {% endblock body %}
+        <div class="flex items-center justify-between w-full">
+
+            <!-- Logo & Menu -->
+            <nav class="flex items-center gap-x-5 lg:gap-x-9 h-14">
+
+                <!-- Logo -->
+                <div class="shrink-0">
+                    <img src="images/app-logo.png" alt="Golden Coffee">
+                </div>
+
+                <!-- Menu -->
+                <ul class="flex gap-x-6 lg:gap-x-9 text-xl h-full text-gray-300 tracking-tightest child:leading-[56px]">
+                    <li class="font-DanaMedium text-orange-200">
+                        <a href="#">صفحه اصلی</a>
+
+                    </li>
+
+                    <li>
+                        <a href="#"" class="hover:text-orange-300 transition-all delay-75">فروشگاه</a>
+            
+                    </li>
 
 
-    <!-- Footer -->
-    {% include 'footer.html' %}
-    <script src="{% static 'scripts/app.js' %}"></script>
+                    <li>
+                        <a href="#">درباره ما</a>
+
+                    </li>
+
+                    <li>
+                        <a href="#">تماس با ما</a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <!-- Cart & Toggle & Login Link -->
+            <div class="flex gap-x-4 lg:gap-x-5 xl:gap-x-10 text-xl text-orange-200">
+                <!-- Cart Icon & Theme Switch Btn -->
+                <div class="flex items-center gap-x-4 lg:gap-x-5">
+                    <!-- Cart -->
+                    <div class="relative group">
+
+                        <!-- Cart Icond Hover -->
+                        <div class="py-3 cursor-pointer">
+                            <svg class="w-8 h-8">
+                                <use href="#shopping-cart"></use>
+                            </svg>
+                        </div>
+
+                        <!-- Cart Box -->
+                        <div
+                            class="absolute overflow-y-auto max-h-[350px] left-0 top-full opacity-0 w-[400px] p-5 invisible group-hover:opacity-100 group-hover:visible bg-white dark:bg-zinc-700 border-t-[3px] border-t-orange-300 rounded-2xl transition-all delay-75 shadow-normal">
+
+
+                            <!-- Cart Header -->
+                            <div class="flex items-center justify-between font-DanaMedium text-xs tracking-tighter">
+                                <span class="text-gray-300">1 مورد</span>
+                                <a href="#" class="flex items-center text-orange-300">مشاهده سبد خرید
+
+                                    <svg class="w-5 h-5">
+                                        <use href="#chevron-left">
+
+                                        </use>
+                                    </svg>
+                                </a>
+                            </div>
+
+                            <!-- Cart Body -->
+                            <div
+                                class="pb-1 border-b border-b-gray-300 dark:border-white/10 divide-y divide-gray-100 dark:divide-white/10 child:py-5">
+
+                                <div class="flex gap-x-2.5">
+                                    <img src="images/products/p1.png" class="w-30 h-30" alt="Product 1">
+
+                                    <div class="flex flex-col justify-between">
+                                        <h4
+                                            class="font-DanaMedium text-zinc-700 dark:text-white text-base line-clamp-2">
+                                            قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</h4>
+                                        <div>
+                                            <span
+                                                class="text-teal-600 dark:text-emerald-500 text-xs tracking-tighter">14.500
+                                                تومان تخفیف</span>
+                                            <div class="text-zinc-700 dark:text-white font-DanaDemiBold">
+                                                175,000
+                                                <span class="font-Dana text-sm">تومان</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Cart Footer -->
+                            <div class="flex justify-between mt-5">
+                                <div>
+                                    <span class="font-DanaMedium text-gray-300 text-xs tracking-tighter">مبلغ قابل
+                                        پرداخت</span>
+                                    <div class="text-zinc-700 dark:text-white font-DanaDemiBold">
+                                        350,000
+                                        <span class="font-Dana text-sm">تومان</span>
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <a href="#"
+                                        class="flex items-center justify-center w-[144px] h-14 text-white bg-teal-600 dark:bg-emerald-500 dark:hover:bg-emerald-600 hover:bg-teal-700 transition-colors rounded-xl tracking-tighter">ثبت
+                                        سفارش</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Theme Switch Btn -->
+                    <div class="toggle-theme cursor-pointer">
+                        <svg class="inline-block dark:hidden w-8 h-8">
+                            <use href="#moon"></use>
+                        </svg>
+                        <svg class="hidden dark:inline-block w-8 h-8">
+                            <use href="#sun"></use>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Divided Border -->
+                <span class="block w-px h-14 bg-white/20"></span>
+
+                <!-- Login Link -->
+                <a href="#" class="flex items-center gap-x-2.5 tracking-tightest">
+                    <svg class="w-8 h-8">
+                        <use href="#arrow-left"></use>
+                    </svg>
+                    <span class="hidden xl:inline-block">ورود | ثبت نام</span>
+                </a>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="flex items-center md:hidden justify-between px-4 h-16 bg-white dark:bg-zinc-700">
+
+        <!-- Nav Icon -->
+        <div class="nav-icon">
+            <svg class="w-6 h-6 text-zinc-700 dark:text-white">
+                <use href="#bars-3"></use>
+            </svg>
+        </div>
+
+        <!-- Nav -->
+
+        <div
+            class="nav overflow-y-auto  fixed top-0 bottom-0 -right-64 w-64 pt-3 px-4 bg-white dark:bg-zinc-700 z-20 transition-all">
+
+            <!-- Nav Header -->
+            <div class="flex items-center justify-between pb-5 mb-6 border-b border-b-gray-100 dark:border-b-white/10">
+                <div class="flex gap-x-3.5">
+
+                    <svg class="w-[41px] h-10 text-orange-300">
+                        <use href="#logo"></use>
+                    </svg>
+                    <svg class="w-[100px] h-10 text-orange-300">
+                        <use href="#logo-type"></use>
+                    </svg>
+                </div>
+                <div class="nav-close-btn">
+                    <svg class="w-5 h-5 text-zinc-600 dark:text-white">
+                        <use href="#x-mark"></use>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Nav Menu -->
+
+            <div class="flex items-center bg-orange-200/20 text-orange-300 pr-2.5 mb-4 h-10 rounded-md">
+                <a href="#" class="flex items-center gap-x-2">
+                    <svg class="w-5 h-5">
+                        <use href="#home"></use>
+                    </svg>
+                    صفحه اصلی
+                </a>
+            </div>
+
+            <ul class="child:pr-2.5 space-y-6 text-zinc-600 dark:text-white">
+
+                <div>
+
+                </div>
+
+                <li>
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="flex items-center gap-x-2">
+                            <svg class="w-5 h-5">
+                                <use href="#shopping-cart"></use>
+                            </svg>
+                            فروشگاه
+                        </a>
+                    </div>
+
+    
+                </li>
+
+                <li>
+                    <a href="#" class="flex items-center gap-x-2">
+                        <svg class="w-5 h-5">
+                            <use href="#briefcase"></use>
+                        </svg>
+                        درباره ما
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#" class="flex items-center gap-x-2">
+                        <svg class="w-5 h-5">
+                            <use href="#phone"></use>
+                        </svg>
+                        تماس با ما
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Nav Footer -->
+            <div
+                class="flex flex-col items-start gap-y-6 mt-8 py-8 px-2.5 border-t border-t-gray-100 dark:border-t-white/10 text-orange-300">
+
+                <a href="#" class="inline-flex items-center gap-x-2">
+                    <svg class="w-5 h-5 rotate-180">
+                        <use href="#arrow-left"></use>
+                    </svg>
+
+                    ورود | ثبت نام
+
+                </a>
+
+                <div class="toggle-theme inline-block">
+
+                    <div class="flex items-center gap-x-2 dark:hidden">
+                        <svg class="w-5 h-5">
+                            <use href="#moon"></use>
+                        </svg>
+                        <span>تم تیره</span>
+                    </div>
+
+                    <div class="hidden dark:flex items-center gap-x-2">
+                        <svg class="w-5 h-5">
+                            <use href="#sun"></use>
+                        </svg>
+                        <span>تم روشن</span>
+                    </div>
+                </div>
+
+
+                <a href="#" class="inline-flex items-center gap-x-2">
+                    <svg class="w-5 h-5">
+                        <use href="#shopping-cart"></use>
+                    </svg>
+                    سبد خرید
+                </a>
+            </div>
+        </div>
+
+        <!-- Logo Type -->
+        <div>
+            <svg class="w-[100] h-10 text-orange-300">
+                <use href="#logo-type"></use>
+            </svg>
+        </div>
+
+        <!-- Cart Icon -->
+        <div class="cart-icon">
+            <svg class="w-6 h-6 text-zinc-700 dark:text-white">
+                <use href="#shopping-cart"></use>
+            </svg>
+        </div>
+
+        <!-- Cart -->
+        <div
+            class="cart overflow-y-auto flex flex-col fixed top-0 bottom-0 -left-64 w-64 pt-5 px-4 bg-white dark:bg-zinc-700 z-20 transition-all">
+
+            <!-- Cart Header -->
+            <div class="flex items-center justify-between pb-5 mb-5 border-b border-b-gray-300 dark:border-b-white/10">
+
+                <div class="cart-close-btn">
+                    <svg class="w-5 h-5 text-zinc-600 dark:text-white">
+                        <use href="#x-mark"></use>
+                    </svg>
+                </div>
+
+                <span class="text-zinc-700 dark:text-white font-DanaMedium">سبد خرید</span>
+            </div>
+
+            <!-- Cart Body -->
+            <div class="child:pb-5 child:mb-5">
+                <div class="flex gap-x-1 border-b border-b-gray-100 dark:border-b-white/10">
+                    <img src="images/products/p1.png" class="w-[90px] h-[90px]" alt="Product 1">
+
+                    <div class="flex flex-col justify-between gap-y-1.5">
+                        <h4 class="font-DanaMedium text-zinc-700 dark:text-white text-sm line-clamp-2">
+                            قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</h4>
+                        <div>
+                            <span
+                                class="text-teal-600 dark:text-emerald-500 font-DanaMedium text-xs tracking-tighter">14.500
+                                تومان تخفیف</span>
+                            <div class="text-zinc-700 dark:text-white font-DanaDemiBold">
+                                175,000
+                                <span class="font-Dana text-xs">تومان</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="flex gap-x-1 border-b border-b-gray-100 dark:border-b-white/10">
+                    <img src="images/products/p2.png" class="w-[90px] h-[90px]" alt="Product 1">
+
+                    <div class="flex flex-col justify-between gap-y-1.5">
+                        <h4 class="font-DanaMedium text-zinc-700 dark:text-white text-sm line-clamp-2">
+                            قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</h4>
+                        <div>
+                            <span
+                                class="text-teal-600 dark:text-emerald-500 font-DanaMedium text-xs tracking-tighter">14.500
+                                تومان تخفیف</span>
+                            <div class="text-zinc-700 dark:text-white font-DanaDemiBold">
+                                175,000
+                                <span class="font-Dana text-xs">تومان</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Cart Footer -->
+            <div class="flex items-end gap-x-4 mt-auto mb-8">
+
+                <a href="#"
+                    class="flex items-center justify-center w-28 h-11 text-white bg-teal-600 dark:bg-emerald-500 dark:hover:bg-emerald-600 hover:bg-teal-700 transition-colors rounded-xl tracking-tighter">ثبت
+                    سفارش</a>
+                <div>
+                    <span class="font-DanaMedium text-gray-300 text-xs tracking-tighter">مبلغ قابل
+                        پرداخت</span>
+                    <div class="text-zinc-700 dark:text-white font-DanaDemiBold">
+                        350,000
+                        <span class="font-Dana text-xs">تومان</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- App Main -->
+    <main>
+    
+        <section>
+            
+            <div class="w-[97%] xs:w-[94%] md:mt-40 mb-4 rounded-md container mt-5 md:mb-11 bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white shadow-normal xs:rounded-xl">
+                <div class="flex justify-between font-DanaMedium pt-8">
+        
+                    <div class="text-xl sm:text-3xl pr-4 dark:text-white">
+                        <h2>سبد خرید</h2>
+                    </div>
+        
+                    <div class="inline-block pl-4">
+                        <span class="dark:text-white">تعداد 3</span>
+                    </div>
+                </div>
+        
+                <div class="sm:px-4">
+                    <div class="grid grid-cols-1">
+                        <div class="flex justify-between items-center shrink gap-x-4 border-t border-t-gray-300 mt-3 pt-5">
+                            <div>
+                            
+                                <img src="./images/products/uniqa-main.png" class="w-[80px] xs:w-[100px] sm:w-[120px] lg:w-[140px]">
+                            </div>
+        
+                            <div class="text-xs xs:text-sm md:text-xl font-DanaMedium line-clamp-1">
+                                <a href="#">قهوه اسپرسو آرنیکا</a>
+                            </div>
+        
+                            <div>
+                                <form method="post" class="flex gap-3 md:text-xl">
+                                    <input type="submit" value="+" class="w-5 hover:cursor-pointer">
+                                    <span>11</span>
+                                    <input type="submit" value="-" class="w-5 hover:cursor-pointer">
+                                </form>
+                              
+                            </div>
+        
+                            <div class="text-xs xs:text-sm md:text-xl font-DanaMedium">
+                                <span>185,000</span>
+                            </div>
+        
+                            <div>
+                                <form method="post">
+                                    <button>
+                                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-red-500">
+                                            <use href="#trash"></use>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+        
+                        
+                        
+                    </div>
+                </div>
+                <div class="pb-3 pt-3 sm:px-4">
+        
+                    <div class="mt-5 sm:mt-2 border-t border-gray-300">
+                        <div class="pb-3 mt-4.5 sm:mt-8 flex justify-between">
+                            <div>
+                                <span class="sm:text-xl">مبلغ قابل پرداخت :<span class="sm:font-DanaDemiBold">2,000,000</span></span>
+                            </div>
+            
+                            <div class="hover:underline text-sm sm:text-lg">
+                                <a href="#">بازگشت به فروشگاه</a>
+                            </div>
+                        </div>
+            
+                    </div>
+                </div>
+
+                    <div class="flex justify-center">
+                        <div class="text-zinc-700 sm:mr-4 w-full sm:mb-4">
+                            <a href="#" class="inline-block text-center w-full text-sm lg:text-xl sm:w-[200px] mb-5 bg-orange-300 px-5 py-3 lg:py-4 rounded-full">ثبت سفارش</a>
+                        </div>
+
+                    </div>
+
+                </div>
+        
+
+
+        </section>
+</main>
+
+ <script src="scripts/app.js"></script>
 </body>
