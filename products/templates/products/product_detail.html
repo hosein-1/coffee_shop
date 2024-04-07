@@ -3,8 +3,14 @@
 {% block title %}محصولات{% endblock %}
 
 {% block content %}
-    {{ product.title }}
-    {{ product.price }}
+
+    <div>
+        {{ product.title }}
+        {{ product.price }}
+<!--        <input type="submit" id="add-to-cart" value="اضافه کردن به سبد خرید">-->
+        <button type="button" id="add-to-cart">اضافه کردن به سبد خرید</button>
+    </div>
+
     {% for comment in product.comments.all %}
         {{ comment.body }}
     {% endfor %}
@@ -20,4 +26,21 @@
         <a href="{% url 'accounts:login' %}">ورود</a>
     {% endif %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function(){
+        $('#add-to-cart').click(function(){
+
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'cart:add_to_cart' product.id %}",
+                data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                success: function(data) {
+                    $('#item-count').text(data.item_count);
+                    $('#cart-total-price').text(data.cart_total_price);
+                },
+            });
+        });
+    });
+</script>
 {% endblock %}
