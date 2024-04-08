@@ -1103,6 +1103,11 @@ html.dark .services::after,
   margin-bottom: 1.25rem;
 }
 
+.my-\[150px\] {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
 .-mt-1 {
   margin-top: -0.25rem;
 }
@@ -2841,10 +2846,6 @@ html.dark .services::after,
 
   .md\:mt-6 {
     margin-top: 1.5rem;
-  }
-
-  .md\:mt-8 {
-    margin-top: 2rem;
   }
 
   .md\:mt-\[26px\] {
