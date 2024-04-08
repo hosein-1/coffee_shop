@@ -12,7 +12,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.ActivateAccountView.as_view(), name='activate'),
     path('account_activation_complete/', views.AccountActivationComplete.as_view(), name='account_activation_complete'),
     path('password-change/',
-         auth_views.PasswordChangeView.as_view(template_name='registration/password_change_form.html'),
+         auth_views.PasswordChangeView.as_view(template_name='registration/password_change_form.html',success_url=reverse_lazy('accounts:password_change_done')),
          name='password_change'),
     path('password-change/done/',
          auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'),
