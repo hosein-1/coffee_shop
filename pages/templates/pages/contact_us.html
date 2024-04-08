@@ -1,8 +1,75 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}درباره ما{% endblock %}
 
-{% block title %}About{% endblock %}
+{% block body %}
 
-{% block content %}
-  <h2>تماس بگیرید.</h2>
-    <p>این صفحه ی تماس با ما است.</p>
+
+<main>
+        
+  <div class="container text-zinc-700 dark:text-white md:mt-36 mb-14">
+      
+   
+
+      <div class="flex justify-center">
+
+          <div class="mt-10 md:mt-[26px] max-w-[700px]">
+              <h3 class="font-DanaDemiBold text-2xl mb-6 md:mb-7">فرم تماس با ما</h3>
+              <div>
+                  <form method="post" action="" class="child:outline-none child:w-full">
+                      <input class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="نام و نام خانوادگی">
+                      <input class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="تلفن تماس">
+                      <input class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="موضوع پیام">
+                      <textarea class="p-3 mt-3 dark:bg-zinc-600" name="" id="" cols="30" rows="3" placeholder="متن پیام خود را بنویسید"></textarea>
+                      <div class="flex justify-center md:mt-4">
+
+                          <input type="submit" value="ارسال" class="md:text-xl text-zinc-700 bg-orange-300 p-3 rounded-full w-full md:w-[200px]">
+                      </div>
+                  </form>
+
+              </div>
+          </div>
+      </div>
+      <div class="">
+
+          <div class="mt-10 md:mt-[26px]">
+                  <h4 class="font-DanaDemiBold text-2xl mb-6 md:mb-7">در تماس باشیم</h4>
+                  <div>
+                      <div class="text-xl mb-6 md:mb-10">
+                          <span class="flex items-center gap-x-2 md:gap-x-3 mb-4 md:mb-5">
+                              <svg class="shrink-0 w-5 h-5 md:w-6 md:h-6">
+                                  <use href="#map-pin"></use>
+                              </svg>
+                              بلوار میرداماد، خیابان البرز، کوچه قبادیان شرقی، پلاک ۳۳
+                          </span>
+  
+                          <div class="flex flex-wrap gap-x-5 gap-y-4 font-DanaMedium">
+                              <a href="#" class="flex items-center gap-x-2 md:gap-x-3">
+                                  <svg class="w-5 h-5 md:w-6 md:h-6">
+                                      <use href="#envelope"></use>
+                                      
+                                  </svg>
+                                  info@coffee.com
+                              </a>
+                              <div class="flex items-center gap-x-3 md:gap-x-4">
+                                  <svg class="w-5 h-5 md:w-6 md:h-6">
+                                      <use href="#phone-contact-us"></use>
+                                      
+                                  </svg>
+                                  <span class="ltr-text">0902 123 6628</span>
+                                  <span class="ltr-text">021 - 6798012</span>
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+              </div>
+      </div>
+    
+     
+  </div>
+
+</main>
+
 {% endblock %}
+
