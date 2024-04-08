@@ -7,6 +7,11 @@ from .models import Product, Comment
 from .forms import CreateCommentForm
 
 
+class HomeView(ListView):
+    queryset = Product.objects.filter(active=True)[:4]
+    template_name = 'home.html'
+    context_object_name = 'products'
+
 class ProductListView(ListView):
     queryset = Product.objects.filter(active=True)
     template_name = 'products/products.html'
