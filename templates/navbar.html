@@ -1,4 +1,4 @@
-{% load static %}   
+{% load static %} 
    <!-- App Header -->
     <header
         class="fixed top-9 right-0 left-0 z-50 hidden md:flex items-center w-[98%] lg:w-[90%] h-24 px-5 lg:px-10 py-5 mx-auto bg-black/50 rounded-3xl backdrop-blur[6px]">
@@ -278,13 +278,13 @@
             </svg>
         </div>
         <!-- Cart Icon -->
-        <div class="cart-icon">
+        <div class="cart-num-increase-mobile cart-icon">
             <svg class="w-6 h-6 text-zinc-700 dark:text-white">
                 <use href="#shopping-cart"></use>
             </svg>
-            <div class="absolute bg-red-400 top-7 left-7 pt-1 rounded-full flex justify-center items-center w-[25px] h-[25px] text-white">
-                <span class="text-base font-DanaMedium">25</span>
-            </div>
+            {% with item_count=cart|length %}
+            <span class="cart-count">{{ item_count }}</span>
+            {% endwith %}
         </div>
 
         <!-- Cart -->

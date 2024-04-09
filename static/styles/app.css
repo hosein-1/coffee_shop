@@ -983,6 +983,26 @@ html.dark .services::after,
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.cart-num-increase-mobile > span {
+  position: absolute;
+  top: 1.75rem;
+  left: 1.75rem;
+  display: flex;
+  height: 29px;
+  width: 29px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+  padding-top: 0.125rem;
+  font-family: Dana Medium;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .invisible {
   visibility: hidden;
 }
@@ -1027,10 +1047,6 @@ html.dark .services::after,
   left: 0px;
 }
 
-.left-7 {
-  left: 1.75rem;
-}
-
 .right-0 {
   right: 0px;
 }
@@ -1061,10 +1077,6 @@ html.dark .services::after,
 
 .top-48 {
   top: 12rem;
-}
-
-.top-7 {
-  top: 1.75rem;
 }
 
 .top-9 {
@@ -1398,10 +1410,6 @@ html.dark .services::after,
   height: 250px;
 }
 
-.h-\[25px\] {
-  height: 25px;
-}
-
 .h-\[26px\] {
   height: 26px;
 }
@@ -1572,10 +1580,6 @@ html.dark .services::after,
 
 .w-\[203px\] {
   width: 203px;
-}
-
-.w-\[25px\] {
-  width: 25px;
 }
 
 .w-\[26px\] {
@@ -2038,11 +2042,6 @@ html.dark .services::after,
   background-color: rgb(253 186 116 / var(--tw-bg-opacity));
 }
 
-.bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
-
 .bg-slate-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
@@ -2236,10 +2235,6 @@ html.dark .services::after,
 
 .pr-7 {
   padding-right: 1.75rem;
-}
-
-.pt-1 {
-  padding-top: 0.25rem;
 }
 
 .pt-10 {

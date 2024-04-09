@@ -7,7 +7,10 @@ from .cart import Cart
 
 
 @require_POST
-def add_to_cart(request, product_id):
+def add_to_cart(request, product_id=None):
+
+    if product_id is None:
+        product_id = request.POST.get('item_id')
 
     try:
         cart = Cart(request)
