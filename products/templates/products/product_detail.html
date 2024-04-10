@@ -1,46 +1,205 @@
 {% extends "base.html" %}
+{% load humanize %}
+{% load jformat %}
+{% block title %}{{ product.title }}{% endblock %}
 
-{% block title %}محصولات{% endblock %}
+{% block body %}
+{% block header %}
+{% endblock %}
+<main>
+ 
 
-{% block content %}
+    <section class="products pt-8 md:pt-24 lg:pt-48 pb-20">
+        <h2 class="font-MorabbaMedium hidden sm:block text-center mb-5 md:mt-14 lg:mt-0 text-zinc-700 dark:text-white text-4xl">{{ product.title }}</h2>
+        <div class="container">
+            <div>
+                <p class="mb-2 hidden md:block text-zinc-700 dark:text-white">دسته بندی: دانه اسپرسو</p>
+            </div>
 
-    <div>
-        {{ product.title }}
-        {{ product.price }}
-<!--        <input type="submit" id="add-to-cart" value="اضافه کردن به سبد خرید">-->
-        <button type="button" id="add-to-cart">اضافه کردن به سبد خرید</button>
-    </div>
+            <div class="md:grid md:grid-cols-3 gap-x-11 md:gap-x-8">
+                
+                
+                <div class="flex justify-center md:justify-between">
+                    <div class="flex items-center bg-white dark:bg-zinc-700 w-[400px] rounded-2xl">
+                        
+                        <img src="{{ product.image.url }}" alt="coffee" class="w-96 dark:text-zinc-700 rounded-2xl">
+                    </div>
+                   
+                </div>
+                  <!-- title mobile -->
+            <div class="block md:hidden">
 
-    {% for comment in product.comments.all %}
-        {{ comment.body }}
-    {% endfor %}
-<!--    <img src="{{ product.image.url }}">-->
-    {% if user.is_authenticated %}
-    <form method="post" action="{% url 'products:create_comment' product.id %}">
-        {% csrf_token %}
-        {{ comment_form.as_p }}
-        <input type="submit" value="ثبت">
-    </form>
-    {% else %}
-        <h4>برای ثبت نظر نیاز است وارد شوید</h4>
-        <a href="{% url 'accounts:login' %}">ورود</a>
-    {% endif %}
+                <h3 class="font-MorabbaMedium text-right mt-12 pb-2 text-zinc-700 dark:text-white text-2xl border-b border-b-gray-400 dark:border-b-white/10">دانه قهوه اسپرسو آرنیکا</h3>
+                <div>
+                    <p class="mt-2.5 text-zinc-700 dark:text-white">دسته بندی : دانه اسپرسو</p>
+                </div>
+            </div>
+                <div class="product-attribute md:child:inline-block my-10 md:my-0">
+                    <span class="inline-block mb-8 md:mb-0">ویژگی های محصول :</span>
+                    <div>
+                        <span>گونه : {{ product.species }}</span>
+                    </div>
+                    <div>
+                        <span>میزان کافئین  : {{ product.caffeine_amount }}</span>
+                    </div>
+                    <div>
+                        <span> خاستگاه : {{ product.origin }} </span>
+                    </div>
+                    <div>
+                        <span>مواد تشکیل دهنده :  {{ product.ingredient }}</span>
+                    </div>
+                    <div>
+                        <span>  وزن :  {{ product.weight|floatformat:0 }} گرم</span>
+                    </div>
+                    <div class="hidden md:block w-full text-center">
+                        <div class="dark:text-white text-zinc-700 text-xl mb-1 font-DanaMedium flex justify-start">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                            <span class="">{{ product.price|intcomma:False }}<span class="font-Morabba">تومان</span></span>
+                        </div>
+             
+                        
+                            <div class="add-to-cart hover:cursor-pointer text-zinc-700 bg-orange-300 p-3 rounded-2xl">
+                              
+                                <input class="" type="submit" value="افزودن به سبد خرید">
+                            </div>
+                        
+                    </div>
+
+                </div>
+
+                <div class="col-span-2 md:col-span-1">
+                    <div class="inline-flex gap-x-3 items-center w-full p-4 mt-3 bg-white dark:bg-zinc-700 rounded-2xl">
+                        <div class="rounded-full p-1 bg-gray-100 dark:bg-zinc-800">
+                            <svg class="w-6 h-6 text-orange-300">
+                                <use href="#truck"></use>
+                            </svg>
+                        </div>
+                        <p class="text-xs md:text-sm/6 text-zinc-700 text-justify dark:text-white">کلیه سفارشات شهرستان که بعد از تاریخ ۲۰ اسفندماه ثبت شوند، از تاریخ 14 فروردین‌ماه تحویل شرکت پست خواهند شد.</p>
+                    </div>
+                    <div class="inline-flex gap-x-3 items-center w-full p-4 mt-3 bg-white dark:bg-zinc-700 rounded-2xl">
+                        <div class="rounded-full p-1 bg-gray-100 dark:bg-zinc-800">
+                            <svg class="w-6 h-6 md:w-6 md:h-6 text-orange-300">
+                                <use href="#guarantee"></use>
+                            </svg>
+                        </div>
+                        <p class="text-xs md:text-sm/6 text-zinc-700 text-justify dark:text-white">7 روز ضمانت بازگشت کالا</p>
+                    </div>
+                    <div class="inline-flex gap-x-3 items-center w-full p-4 mt-3 bg-white dark:bg-zinc-700 rounded-2xl">
+                        <div class="rounded-full p-1 bg-gray-100 dark:bg-zinc-800">
+                            <svg class="w-5 h-5 text-orange-300">
+                                <use href="#support"></use>
+                            </svg>
+                        </div>
+                        <p class="text-xs md:text-sm/6 text-zinc-700 text-justify dark:text-white">پشتیبانی سریع</p>
+                    </div>
+    
+                </div>
+                 
+                
+            </div>
+
+
+          
+          
+
+
+
+            <div class="text-zinc-700 dark:text-white mt-10 mb-6 text-justify">
+                <h4 class="font-DanaMedium mb-3 text-orange-300 text-xl md:text-2xl">معرفی محصول</h4>
+                <div  class="text-lg md:text-xl md:leading-10">
+
+                    <p>
+                       {{ product.description | safe }}
+                    </p>
+                </div>
+            </div>
+
+                        <div>
+                            <span class="font-DanaDemiBold text-orange-300">ایجاد نظر جدید</span>
+                            {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'products:create_comment' product.id %}">
+                                {% csrf_token %}
+                                <div class="mt-4">
+                                    <textarea name="body" class="w-full block dark:bg-zinc-600 dark:text-white font-DanaMedium text-sm outline-none p-4.5 md:p-4 md:w-1/2 rounded-2xl" name="" id="" cols="30" rows="6" placeholder="نظر خود را بنویسید ..."></textarea>
+                                </div>
+                                <div class="flex font-DanaMedium justify-center mt-4.5 sm:mt-6 rounded-lg text-zinc-700 h-[48px] cursor-pointer w-[144px] bg-orange-300">
+                                    <input type="submit" value="ارسال">
+                                </div>
+                            </form>
+                            {% else %}
+                             <div class="text-zinc-700 dark:text-white mt-5">
+                                <span>برای ثبت نظر باید ابتدا <a href="{% url 'accounts:login' %}" class="text-orange-300">وارد</a> شوید.</span>
+                             </div>
+                            {% endif %}
+
+                        </div>
+                        
+                        <div class="mt-11 border p-3 border-gray-400 dark:border-zinc-700">
+
+                            <div>
+                                <span class="dark:text-white font-MorabbaMedium text-xl">نظرات</span>
+                            </div>
+                            {% if product.comments.all %}
+                            {% for comment in product.comments.all %}
+                            <div class="mt-3 bg-white dark:text-white dark:bg-zinc-700 p-3 rounded-md">
+                                <p>{{ user.username }}</p>
+                                <span>{{ comment.datetime_created|jformat:"%d / %m / %Y - %H:%M" }}</span>
+                                <div class="mt-3 border-t border-gray-200 dark:border-zinc-600">
+                                    <p class="mt-3">
+                                        {{ comment.body }}
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            <div class="mt-5">
+                                <span class="text-zinc-700 dark:text-white">نظری برای این محصول وجود ندارد</span>
+                            </div>
+                            {% endif %}
+                          
+                        </div>
+        
+        </div>
+
+
+              <!-- mobile add to cart -->
+              <div class="fixed bottom-0 md:hidden text-whit bg-orange-300 w-full h-[70px] z-10">
+                <div class="flex justify-between items-center py-3 px-5">
+            
+                        
+                        <div class="add-to-cart cursor-pointer text-zinc-700 bg-white p-3 rounded-2xl">
+                            <input class="" type="submit" value="افزودن به سبد خرید">
+                        </div>
+          
+
+                    <div>
+                        <span class="text-zinc-700 font-DanaDemiBold"> {{ product.price|intcomma:False }}تومان</span>
+                    </div>
+                </div>
+            </div>
+                
+            
+
+
+    </section>
+</main>
+
+{% block script %}
 <script>
     $(document).ready(function(){
-        $('#add-to-cart').click(function(){
+        $('.add-to-cart').click(function(){
 
             $.ajax({
                 type: 'POST',
                 url: "{% url 'cart:add_to_cart' product.id %}",
                 data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
                 success: function(data) {
-                    $('#item-count').text(data.item_count);
-                    $('#cart-total-price').text(data.cart_total_price);
+                    $('.cart-count').text(data.item_count);
+                    // $('#cart-total-price').text(data.cart_total_price);
                 },
             });
         });
     });
 </script>
+{% endblock %}
 {% endblock %}
