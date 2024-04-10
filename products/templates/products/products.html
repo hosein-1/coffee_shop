@@ -1,9 +1,105 @@
 {% extends "base.html" %}
-
+{% load humanize %}
 {% block title %}محصولات{% endblock %}
+{% block body %}
+  
 
-{% block content %}
-    {% for product in products %}
-        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-    {% endfor %}
+<section class="products pt-8 md:pt-24 lg:pt-48 pb-20">
+
+    <div class="container">
+
+        <!-- Section Head -->
+        <div class="flex justify-between items-end mb-5 md:mb-12">
+            <div>
+                <h3 class="section-title">جدید ترین محصولات</h3>
+                <span class="section-subtitle">فراوری شده از دانه قهوه</span>
+            </div>
+            <a href="{% url 'products:products_list' %}" class="selection-link">
+                <span class="hidden md:inline-block">مشاهده همه محصولات</span>
+                <span class="inline-block md:hidden">مشاهده همه</span>
+                <svg class="w-5 h-5">
+                    <use href="#chevron-left"></use>
+                </svg>
+            </a>
+
+        </div>
+
+        <!-- Section Body -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5 child:rounded-2xl mb-20">
+
+            {% for product in products %}
+            <div class="coffee-product p-2 md:p-5 bg-white dark:bg-zinc-700 shadow-normal"  data-product-id="{{ product.id }}">
+           
+
+                <div class="relative mb-2 md:mb-5">
+                    <img src="{{ product.image.url }}" class="w-32 mx-auto md:w-auto" alt="product 3">
+                </div>
+
+                <h5
+                    class="font-DanaMedium h-10 md:h-14 text-sm md:text-xl text-zinc-700 dark:text-white line-clamp-2">
+                    <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                </h5>
+                <div class="flex justify-between mt-1.5 md:mt-2.5 gap-x-2 md:gap-x-2.5">
+                    <div class="text-teal-600 dark:text-emerald-500">
+                        <span class="font-DanaDemiBold text-base md:text-xl">{{ product.price | intcomma:False }}</span>
+                        <span class="text-xs md:text-sm tracking-tighter">تومان</span>
+                 
+                    </div>
+             
+
+                       
+
+                            <span
+                            class="add-to-cart flex-center w-[26px] h-[26px] md:w-9 md:h-9 rounded-full cursor-pointer text-gray-400 bg-gray-100 dark:bg-zinc-800 hover:text-white hover:bg-teal-600 dark:hover:bg-emerald-500 transition-all">
+                            <svg class="w-4 h-4 md:w-[22px] md:h-[22px]">
+                                <use href="#shopping-cart"></use>
+                            </svg>
+                        </span>
+                        
+            
+            
+                </div>
+
+
+            </a>
+      
+
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
 {% endblock %}
+
+{% block script %}
+<script>
+     $(document).ready(function(){
+
+    $('.add-to-cart').on('click', function(){
+              addToCart($(this).closest('.coffee-product').data('product-id'));
+          });
+    
+      
+        function addToCart(itemId){
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cart:add_to_cart" %}',
+            data: {
+                'item_id': itemId,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(data){
+                if(!data.success){
+                    $('.cart-count').text(data.item_count);
+                
+                } else {
+                    alert('error');
+                }
+            }
+        });
+    }
+});
+
+</script>
+{% endblock script %}    
