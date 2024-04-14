@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    @font-face {
+        font-family: "Dana"; /* 400 */
+        src: local("Dana"), url("../fonts/Dana//woff2/DanaFaNum-Regular.woff2") format("woff2");
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Dana Medium"; /* 500 */
+        src: local("Dana Medium"), url("../fonts/Dana/woff2/DanaFaNum-Medium.woff2") format("woff2");
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Dana DemiBold"; /* 600 */
+        src: local("Dana DemiBold"), url("../fonts/Dana/woff2/DanaFaNum-DemiBold.woff2") format("woff2");
+        font-display: swap;
+    }
+    
+    @font-face {
+        font-family: "Morabba Light";
+        src: local("Morabba Light"), url("../fonts/Morabba/woff2/Morabba-Light.woff2") format("woff2");
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Morabba Medium";
+        src: local("Morabba Medium"), url("../fonts/Morabba/woff2/Morabba-Medium.woff2") format("woff2");
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "Morabba Bold";
+        src: local("Morabba Bold"), url("../fonts/Morabba/woff2/Morabba-Bold.woff2") format("woff2");
+        font-display: swap;
+    }
+
+}
+
+@layer components {
+    .submenu {
+        @apply hidden flex-col gap-y-3 pr-7 mt-3 text-sm text-zinc-600 dark:text-white;
+        
+    }
+
+    .submenu_open {
+        @apply flex;
+    }
+    .submenu__item--active::after {
+        content: "";
+        display: block;
+        width: 4px;
+        height: 4px;
+        background-color: #FDBA74;
+        border-radius: 100px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    .submenu__item--active{
+        @apply relative text-orange-300 pr-2.5;
+
+    }
+    
+    .overlay {
+
+        @apply invisible opacity-0;
+    }
+    
+    .overlay-visible {
+        @apply visible opacity-100;
+    }
+
+    .circle {
+        @apply flex items-center justify-center border rounded-full;
+    }
+
+    .circle--main {
+        @apply hidden md:flex absolute left-0 right-0 bottom-0 mx-auto translate-y-2/4;
+    }
+    .circle-lg {
+
+        @apply border-white/25;
+
+    }
+    .circle-md {
+        @apply border-white/50;
+
+    }
+    .circle-sm {
+        @apply border-white/80;
+
+    }
+
+    @media screen and (min-width: 1280px){
+        html.dark .products {
+            background-image: url("../images/body-bg.png");
+        }
+        .products {
+            background: linear-gradient(rgba(243, 244, 246, 0.65), rgba(243, 244, 246, 0.65)), url("../images/body-bg.png");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+    }
+
+    .section-title {
+        @apply text-2xl md:text-5xl font-MorabbaMedium text-zinc-700 dark:text-white;
+    }
+    .section-subtitle {
+        @apply inline-block text-lg md:text-3xl font-Morabba mt-0.5 md:mt-1.5 text-zinc-700 dark:text-white;
+    }
+    .selection-link {
+        @apply flex md:gap-x-1 items-center text-base md:text-xl h-10 pr-3 pl-1 rounded-md tracking-tightest text-orange-300 md:hover:bg-orange-300/20 transition-colors;
+    }
+
+    .offer {
+        @apply relative text-gray-400;
+    }
+
+    .offer::after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        inset: 0;
+        top: -2px;
+        margin: auto;
+        background-color: #EF4444   ;
+    }
+
+    .category-banner-item1 {
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0.6) 33.85%, rgba(243, 244, 246, 0.1) 100%), url("../images/categories/category-right.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+    .category-banner-item2 {
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0.6) 33.85%, rgba(243, 244, 246, 0.1) 100%), url("../images/categories/category-left.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+    .swiper-button-prev-custom,
+    swiper-button-next-custom {
+        @apply flex-center w-9 h-9 md:w-10 md:h-10 text-zinc-700 bg-white dark:bg-zinc-700 dark:text-white shadow-normal hover:bg-gray-300 dark:hover:bg-white dark:hover:text-zinc-700 rounded-full transition-all;
+    }
+
+    .gradient {
+        background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+    }
+
+    .gradient-button {
+        background: linear-gradient(90deg, #fed7aa 0%, #fdba74 100%);
+    }
+
+    .gradient-blog {
+        background: linear-gradient(90deg, rgba(254, 215, 170, 80%) 0%, rgba(253, 186, 116, 80%) 100%);
+    }
+
+    .services {
+        @apply relative;
+
+    }
+
+    .services::after,
+    .services::before {
+        content: "";
+        display: block;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        background-color: #D1D5DB;
+    }
+
+
+    @media screen and (min-width: 480px) {
+        .services::after,
+        .services::before {
+            content: none;
+        }
+    }
+
+    
+    html.dark .services::after,
+    html.dark .services::before{
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .services::after {
+        width: 1px;
+        height: calc(100% + 1.25rem);
+
+    }
+
+    .services::before {
+        width: calc(100% - 2rem);
+        height: 1px;
+
+    }
+
+ 
+    .product-attribute > *:not(:last-child):not(:first-child) {
+       @apply h-11 flex items-center bg-white dark:bg-zinc-700 dark:text-white text-zinc-700 mb-3 p-3 rounded-2xl;
+    }
+
+    .product-attribute > :first-child {
+        @apply mb-3 text-zinc-700 dark:text-white font-DanaMedium;
+    }
+
+    .order-input > * {
+        @apply p-2 mt-2;
+    }
+
+    .order-input > input, textarea {
+        @apply rounded-md outline-none;
+    }
+
+    .cart-num-increase > span{
+        @apply flex justify-center items-center absolute top-1/2 -right-2 pt-1 bg-red-400 rounded-full text-white w-6 h-6;
+    }
+
+    .cart-num-increase-mobile > span {
+        @apply absolute top-7 left-7 bg-red-400 text-white w-[29px] h-[29px] pt-0.5 flex justify-center items-center font-DanaMedium text-base rounded-full;
+    }
+   
+}  
+
+@layer utilities {
+    .flex-center {
+        @apply flex items-center justify-center;
+    }
+
+    .ltr-text {
+        direction: ltr;
+        text-align: left;
+    }
+}
