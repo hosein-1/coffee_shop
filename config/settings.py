@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 
     'ckeditor',
     'django_jalali',
+    'rest_framework',
 
 ]
 

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}خرید{% endblock %}
+
+{% block body %}
+
+{% block navbar %}
+{% endblock %}
+{% block header %}
+{% endblock %}
+<div class="bg-orange-300 h-72">
+  <div class="absolute text-center left-0 xs:right-0 p-5 xs:rounded-xl mx-auto top-36 bg-white w-screen xs:w-[400px] h-[250px]">
+    <div>
+        <div class="flex justify-center">
+
+            <svg class="w-12 h-12">
+                <use href="#tick"></use>
+            </svg>
+        </div>
+      <div class="py-8 px-5">
+          <p>
+                این تراکنش قبلا ثبت شده است.
+          </p>
+
+      </div>
+
+      <div>
+          <a href="#" class="absolute mx-auto right-0 left-0 bottom-11 hover:underline">رفتن به صفحه سفارشات</a>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
