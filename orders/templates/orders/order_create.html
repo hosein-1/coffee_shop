@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block title %}سبد خرید{% endblock %}
+
+{% block body %}
+{% block header %}
+{% endblock %}
+<div class="container mb-8 flex flex-col lg:flex-row justify-center items-start md:gap-x-5">
+    <div
+        class="flex flex-col w-full lg:w-2/5 lg:h-[400px] max-lg:max-h-[450px] p-2 mb-5 shadow-normal bg-white dark:bg-zinc-700/[.8] text-zinc-700 dark:text-white rounded-xl ">
+
+        <div class="flex justify-center pt-3 text-zinc-700 dark:text-white">
+            <div>
+
+                <span class="text-orange-300 font-DanaMedium md:text-xl">خلاصه سفارش</span>
+            </div>
+
+        </div>
+        <div
+            class="flex-1 overflow-y-scroll 
+            [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:m-1.5 [&::-webkit-scrollbar-track]:rounded-xl [&::-webkit-scrollbar-thumb]:bg-gray-700 [&::-webkit-scrollbar-thumb]:rounded-xl">
+            {% for item in cart %}
+            <div class="flex justify-between items-center px-3 mb-2 ">
+                <div>
+                    <img src="{{ item.product_obj.image.url }}" class="w-24 md:w-28 [mix-blend-mode: color]" alt="">
+                </div>
+                <div class="line-clamp-1">
+                    <span>{{ item.product_obj.title }}<span>
+                </div>
+                <div>
+                    <span>x{{ item.quantity }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div
+            class="flex justify-between mb-5 mx-3 pt-4 md:text-xl border-t-2 border-t-gray-300 text-zinc-700 dark:text-white">
+            <div>
+                <span>قیمت کل:</span>
+            </div>
+            <div>
+                <span>{{ cart.get_total_price|intcomma:False }} تومان</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div
+        class="w-full lg:w-3/5 md:h-[400px] lg:mb-16 pb-5 pt-3 shadow-normal rounded-xl bg-white dark:bg-zinc-700/[.8] text-zinc-700 dark:text-white">
+        <div class="text-center pt-3">
+            <h3 class="font-DanaMedium text-orange-300 md:text-xl">ثبت سفارش</h3>
+        </div>
+        <div>
+
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 child:mt-2 px-5 md:child:mt-1 md:gap-x-4 md:p-4">
+
+
+
+                    <div class="order-input child:inline-block child:w-full">
+
+                        <input name="first_name" type="text" class="bg-gray-100 dark:bg-zinc-600" id="first-name"
+                            placeholder="نام گیرنده">
+                    </div>
+                    <div class="order-input child:inline-block child:w-full">
+
+                        <input name="last_name" type="text" class="bg-gray-100 dark:bg-zinc-600" id="last-name"
+                            placeholder="نام خانوادگی گیرنده">
+                    </div>
+
+                    <div class="order-input child:inline-block child:w-full">
+
+                        <input name="phone_number" type="text" class="bg-gray-100 dark:bg-zinc-600" id="phone-num"
+                            placeholder="شماره تلفن">
+                    </div>
+                    <div class="order-input child:inline-block child:w-full">
+
+                        <input name="province" type="text" class="bg-gray-100 dark:bg-zinc-600" id="province"
+                            placeholder="استان">
+                    </div>
+
+                    <div class="order-input child:inline-block child:w-full">
+
+                        <input name="city" type="text" class="bg-gray-100 dark:bg-zinc-600" id="city" placeholder="شهر">
+                    </div>
+
+                    <div class="order-input child:inline-block child:w-full">
+
+                        <input name="postal_code" type="text" class="bg-gray-100 dark:bg-zinc-600" id="postal-code"
+                            placeholder="کد پستی">
+                    </div>
+                    <div class="order-input child:inline-block child:w-full">
+
+                        <textarea name="address" id="address" placeholder="ادامه آدرس" cols="30" rows="3"
+                            class="bg-gray-100 dark:bg-zinc-600"></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="flex justify-center">
+                 <input type="submit" value="پرداخت"
+                        class="inline-block bg-orange-300 p-2 w-1/2 text-zinc-700 text-center mt-2.5 md:mt-0 rounded-full hover:cursor-pointer">
+
+                </div>
+            </form>
+        </div>
+        <div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+{% endblock %}
