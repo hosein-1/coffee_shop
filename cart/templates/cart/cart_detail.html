@@ -10,7 +10,7 @@
     
         <section>
             
-            <div class="w-[97%] xs:w-[94%] md:mt-40 mb-4 rounded-md container mt-5 md:mb-11 bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white shadow-normal xs:rounded-xl">
+            <div class="w-[97%] xs:w-[94%] mb-4 rounded-md container mt-5 md:mb-11 bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white shadow-normal xs:rounded-xl">
                 <div class="flex justify-between font-DanaMedium pt-8">
         
                     <div class="text-xl sm:text-3xl pr-4 dark:text-white">
@@ -68,9 +68,9 @@
                         
                     </div>
                 </div>
-                <!-- {% if cart %} -->
+
             
-                    <div class="empty-cart">
+                    <div id="full-cart" class="{% if not cart %}hidden{% endif %}">
 
                         <div class="pb-3 pt-3 sm:px-4">
                 
@@ -90,16 +90,16 @@
         
                             <div class="flex justify-center">
                                 <div class="text-zinc-700 sm:mr-4 w-full sm:mb-4">
-                                    <a href="#" class="inline-block text-center w-full text-sm lg:text-xl sm:w-[200px] mb-5 bg-orange-300 px-5 py-3 lg:py-4 rounded-full">ثبت سفارش</a>
+                                    <a href="{% url 'orders:order_create' %}" class="inline-block text-center w-full text-sm lg:text-xl sm:w-[200px] mb-5 bg-orange-300 px-5 py-3 lg:py-4 rounded-full">ثبت سفارش</a>
                                 </div>
         
                             </div>
                     </div>
-                </div>
 
-                <!-- {% else %} -->
+
+
                 
-                <div class="container"> 
+                <div id="empty-cart" class="{% if cart %}hidden{% endif %} container"> 
 
                     <div class="flex justify-between items-center">
     
@@ -111,8 +111,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- {% endif %} -->
-          
+
+            </div>
         
 
 
@@ -173,6 +173,11 @@
                         $('#final-price').text(response.final_price);
                         $(`.product-item[data-item-id=${itemId}]`).remove();
                         $('empty-cart').remove();
+                        cartBoxRefresh(response);
+                        if(response.item_count == 0){
+                            $('#empty-cart').removeClass('hidden');
+                            $('#full-cart').addClass('hidden');
+                        }
                     } else {
                         alert('error remove product');
                     }
