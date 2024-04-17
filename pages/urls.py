@@ -7,4 +7,5 @@ app_name = 'pages'
 urlpatterns = [
     path('about/', views.AboutUsView.as_view(), name='about'),
     path('contact-us/', views.ContactUsView.as_view(), name='contact_us'),
+    path('contact/comment/', views.ContactUsCreateView.as_view(), name='contact_comment'),
 ]

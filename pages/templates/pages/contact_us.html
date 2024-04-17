@@ -16,14 +16,15 @@
           <div class="mt-10 md:mt-[26px] max-w-[700px]">
               <h3 class="font-DanaDemiBold text-2xl mb-6 md:mb-7">فرم تماس با ما</h3>
               <div>
-                  <form method="post" action="" class="child:outline-none child:w-full">
-                      <input class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="نام و نام خانوادگی">
-                      <input class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="تلفن تماس">
-                      <input class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="موضوع پیام">
-                      <textarea class="p-3 mt-3 dark:bg-zinc-600" name="" id="" cols="30" rows="3" placeholder="متن پیام خود را بنویسید"></textarea>
+                  <form method="post" action="{% url 'pages:contact_comment' %}" class="child:outline-none child:w-full">
+                    {% csrf_token %}
+                      <input name="full_name" class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="نام و نام خانوادگی">
+                      <input name="phone_number" class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="تلفن تماس">
+                      <input  name="title" class="p-3 mt-3 dark:bg-zinc-600" type="text" placeholder="موضوع پیام">
+                      <textarea name="content" class="p-3 mt-3 dark:bg-zinc-600" name="" id="" cols="30" rows="3" placeholder="متن پیام خود را بنویسید"></textarea>
                       <div class="flex justify-center md:mt-4">
 
-                          <input type="submit" value="ارسال" class="md:text-xl text-zinc-700 bg-orange-300 p-3 rounded-full w-full md:w-[200px]">
+                          <input type="submit" value="ارسال" class="md:text-xl text-zinc-700 bg-orange-300 p-3 rounded-full w-full md:w-[200px] hover:cursor-pointer">
                       </div>
                   </form>
 
