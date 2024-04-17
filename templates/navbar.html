@@ -2,7 +2,7 @@
 {% load humanize %}
    <!-- App Header -->
     <header
-        class="fixed top-9 right-0 left-0 z-50 hidden md:flex items-center w-[98%] lg:w-[90%] h-24 px-5 lg:px-10 py-5 mx-auto bg-black/50 rounded-3xl backdrop-blur[6px]">
+        class="fixed top-4 mb-9 right-0 left-0 z-50 hidden md:flex items-center w-[98%] lg:w-[90%] h-24 px-5 lg:px-10 py-5 mx-auto bg-black/50 rounded-3xl backdrop-blur[6px]">
 
         <div class="flex items-center justify-between w-full">
 
@@ -44,12 +44,13 @@
             <!-- Cart & Toggle & Login Link -->
             <div class="flex gap-x-4 lg:gap-x-5 xl:gap-x-10 text-xl text-orange-200">
                 <!-- Cart Icon & Theme Switch Btn -->
+        
                 <div class="flex items-center gap-x-4 lg:gap-x-5">
                     <!-- Cart -->
                     <div class="relative group">
 
                         <!-- Cart Icond Hover -->
-                      
+                        
                         <div class="cart-num-increase py-3 cursor-pointer">
                             <svg class="w-8 h-8">
                                 <use href="#shopping-cart"></use>
@@ -58,14 +59,13 @@
                             <span class="cart-count text-base font-DanaDemiBold">{{ item_count }}</span>
                             {% endwith %}
                         </div>
-
+                    
                         <!-- Cart Box -->
-                        <div
+                        <div id="desktop-cart-box"
                             class="absolute overflow-y-auto max-h-[350px] left-0 top-full opacity-0 w-[400px] p-5 invisible group-hover:opacity-100 group-hover:visible bg-white dark:bg-zinc-700 border-t-[3px] border-t-orange-300 rounded-2xl transition-all delay-75 shadow-normal">
 
-
                             <!-- Cart Header -->
-                            <div class="flex items-center justify-between font-DanaMedium text-xs tracking-tighter">
+                            <div class="{% if not cart %} hidden {% endif %} flex items-center justify-between font-DanaMedium text-xs tracking-tighter">
                                 {% with item_count=cart|length %}
                                 <span class="cart_count text-gray-300">{{ item_count }}</span>
                                 {% endwith %}
@@ -78,6 +78,7 @@
                                     </svg>
                                 </a>
                             </div>
+                     
 
                             <!-- Cart Body -->
                             {% for item in cart %}
@@ -109,7 +110,9 @@
                             {% endfor %}
                             
                             <!-- Cart Footer -->
-                            <div class="flex justify-between mt-5">
+                            
+                            {% if cart %}
+                            <div class="flex justify-between mt-5 ">
                                 <div>
                                     <span class="font-DanaMedium text-gray-300 text-xs tracking-tighter">مبلغ قابل
                                         پرداخت</span>
@@ -121,13 +124,19 @@
                                 </div>
                                 
                                 <div>
-                                    <a href="#"
+                                    <a href="{% url 'orders:order_create' %}"
                                         class="flex items-center justify-center w-[144px] h-14 text-white bg-teal-600 dark:bg-emerald-500 dark:hover:bg-emerald-600 hover:bg-teal-700 transition-colors rounded-xl tracking-tighter">ثبت
                                         سفارش</a>
                                 </div>
                             </div>
+                            {% else %}
+                            <div class="text-zinc-700">
+                                <span>سبد خرید خالی است.</span>
+                            </div>
+                            {% endif %}
                            
                         </div>
+                      
                     </div>
 
                     <!-- Theme Switch Btn -->
@@ -140,17 +149,28 @@
                         </svg>
                     </div>
                 </div>
+         
+             
 
                 <!-- Divided Border -->
                 <span class="block w-px h-14 bg-white/20"></span>
 
                 <!-- Login Link -->
+                {% if user.is_authenticated %}
+                <a href="#" class="flex items-center gap-x-2.5 tracking-tightest">
+                    <svg class="w-8 h-8 lg:w-9 lg:h-9">
+                        <use href="#user-circle"></use>
+                    </svg>
+                    
+                </a>
+                {% else %}
                 <a href="{% url 'accounts:login' %}" class="flex items-center gap-x-2.5 tracking-tightest">
                     <svg class="w-8 h-8">
                         <use href="#arrow-left"></use>
                     </svg>
                     <span class="hidden xl:inline-block">ورود | ثبت نام</span>
                 </a>
+                {% endif %}
             </div>
         </div>
 
@@ -242,7 +262,15 @@
             <!-- Nav Footer -->
             <div
                 class="flex flex-col items-start gap-y-6 mt-8 py-8 px-2.5 border-t border-t-gray-100 dark:border-t-white/10 text-orange-300">
-
+                {% if user.is_authenticated %}
+             
+                <a href="#" class="inline-flex items-center gap-x-2">
+                    <svg class="w-5 h-5">
+                        <use href="#user-circle"></use>
+                    </svg>
+                        پروفایل
+                </a>
+                {% else %}
                 <a href="{% url 'accounts:login' %}" class="inline-flex items-center gap-x-2">
                     <svg class="w-5 h-5 rotate-180">
                         <use href="#arrow-left"></use>
@@ -251,6 +279,7 @@
                     ورود | ثبت نام
 
                 </a>
+                {% endif %}
 
                 <div class="toggle-theme inline-block">
 
@@ -270,7 +299,7 @@
                 </div>
 
 
-                <a href="#" class="inline-flex items-center gap-x-2">
+                <a href="{% url 'cart:cart_detail' %}" class="inline-flex items-center gap-x-2">
                     <svg class="w-5 h-5">
                         <use href="#shopping-cart"></use>
                     </svg>
@@ -296,7 +325,7 @@
         </div>
 
         <!-- Cart -->
-        <div
+        <div 
             class="cart overflow-y-auto flex flex-col fixed top-0 bottom-0 -left-64 w-64 pt-5 px-4 bg-white dark:bg-zinc-700 z-20 transition-all">
 
             <!-- Cart Header -->
@@ -310,7 +339,7 @@
 
                 <span class="text-zinc-700 dark:text-white font-DanaMedium">سبد خرید</span>
             </div>
-
+            <div id="mobile-cart-box">
             <!-- Cart Body -->
             <div class="child:pb-5 child:mb-5">
                 {% for item in cart %}
@@ -339,9 +368,10 @@
             </div>
 
             <!-- Cart Footer -->
+            {% if cart %}
             <div class="flex items-end gap-x-4 mt-auto mb-8">
 
-                <a href="#"
+                <a href="{% url 'orders:order_create' %}"
                     class="flex items-center justify-center w-28 h-11 text-white bg-teal-600 dark:bg-emerald-500 dark:hover:bg-emerald-600 hover:bg-teal-700 transition-colors rounded-xl tracking-tighter">ثبت
                     سفارش</a>
                 <div>
@@ -355,8 +385,14 @@
                 </div>
 
             </div>
+            {% else %}
+                <div class="text-zinc-700">
+                    <span>سبد خرید خالی است.</span>
+                </div>
+            {% endif %}
+        </div>
         </div>
 
     </div>
 
-  
+    <div class="overlay md:hidden fixed inset-0 w-full h-full bg-black/40 z-10"></div>
