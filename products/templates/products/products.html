@@ -90,16 +90,17 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             },
             success: function(data){
-                if(!data.success){
-                    $('.cart-count').text(data.item_count);
-                
-                } else {
-                    alert('error');
-                }
-            }
+                $('.cart-count').text(data.item_count);
+                cartBoxRefresh(data);
+            },
+            fail: function(xhr, textStatus, errorThrown){
+            alert('request failed');
+    }
         });
     }
 });
+
+
 
 </script>
 {% endblock script %}    

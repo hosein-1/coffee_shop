@@ -90,12 +90,10 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}'
             },
             success: function(data){
-                if(!data.success){
-                    $('.cart-count').text(data.item_count);
+                $('.cart-count').text(data.item_count);
+                cartBoxRefresh(data);
                 
-                } else {
-                    alert('error');
-                }
+     
             }
         });
     }

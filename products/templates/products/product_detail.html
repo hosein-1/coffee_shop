@@ -9,7 +9,7 @@
 <main>
  
 
-    <section class="products pt-8 md:pt-24 lg:pt-48 pb-20">
+    <section class="products pt-8 md:pt-24 lg:pt-40 pb-20">
         <h2 class="font-MorabbaMedium hidden sm:block text-center mb-5 md:mt-14 lg:mt-0 text-zinc-700 dark:text-white text-4xl">{{ product.title }}</h2>
         <div class="container">
             <div>
@@ -36,8 +36,8 @@
             </div>
                 <div class="product-attribute md:child:inline-block my-10 md:my-0">
                     <span class="inline-block mb-8 md:mb-0">ویژگی های محصول :</span>
-                    <div>
-                        <span>گونه : {{ product.species }}</span>
+                    <div class="inline-block">
+                        <span class="inline-block px019">گونه : {{ product.species }}</span>
                     </div>
                     <div>
                         <span>میزان کافئین  : {{ product.caffeine_amount }}</span>
