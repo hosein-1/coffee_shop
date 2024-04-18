@@ -2,6 +2,7 @@ from django.shortcuts import redirect, reverse, render
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.http import HttpResponse
+from django.contrib import messages
 
 from orders.models import Order
 import requests
@@ -77,14 +78,17 @@ def payment_callback_sandbox(request):
                 order.ref_id = data['RefID']
                 order.zarinpal_data = data
                 order.save()
-
+                messages.success(request, 'پرداخت شما موفق بود.')
                 return render(request, 'payment/successful_purchase.html')
 
             elif payment_cod == 101:
+                messages.warning(request, 'این پرداخت قبلا ثبت شده است.')
                 return render(request, 'payment/transaction_registration.html')
 
             else:
+                messages.error(request, 'پرداخت شما ناموفق بود.')
                 return render(request, 'payment/unsuccessful_purchase.html')
 
     else:
+        messages.error(request, 'پرداخت شما ناموفق بود.')
         return render(request, 'payment/unsuccessful_purchase.html')

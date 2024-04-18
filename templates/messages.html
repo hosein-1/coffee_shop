@@ -7,8 +7,6 @@
         {% if message.tags == 'success' %} 
         <div class="toast-message max-w-xs bg-teal-100 border border-teal-200 text-sm text-teal-800 rounded-lg" role="alert">
           <div class="flex p-4">
-            {{ message }}
-      
             <div class="ms-auto">
               <button type="button" class="message-close inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-teal-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100">
                 <span class="sr-only">Close</span>
@@ -18,15 +16,16 @@
                 </svg>
               </button>
             </div>
+            {{ message }}
+      
+           
           </div>
         </div>
         {% endif %}
  
-        {% if message.tags == 'ERROR' %}
+        {% if message.tags == 'error' %}
         <div class="toast-message max-w-xs bg-red-100 border border-red-200 text-sm text-red-800 rounded-lg" role="alert">
           <div class="flex p-4">
-            {{ message }}
-      
             <div class="ms-auto">
               <button type="button" class="message-close inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-red-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100">
                 <span class="sr-only">Close</span>
@@ -36,15 +35,16 @@
                 </svg>
               </button>
             </div>
+            {{ message }}
+      
+           
           </div>
         </div>
         {% endif %}
       
-        {% if message.tags == 'WARNING' %}
+        {% if message.tags == 'warning' %}
         <div class="toast-message max-w-xs bg-yellow-100 border border-yellow-200 text-sm text-yellow-800 rounded-lg" role="alert">
           <div class="flex p-4">
-            {{ message }}
-      
             <div class="ms-auto">
               <button type="button" class="message-close inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-yellow-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100">
                 <span class="sr-only">Close</span>
@@ -54,6 +54,9 @@
                 </svg>
               </button>
             </div>
+            {{ message }}
+      
+        
           </div>
         </div>
         {% endif %}
