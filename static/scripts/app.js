@@ -7,7 +7,8 @@ const overlay = document.querySelector(".overlay");
 const cartOpenBtn = document.querySelector(".cart-icon");
 const cartCloseBtn = document.querySelector(".cart-close-btn");
 const cart = document.querySelector(".cart");
-
+const messeageClose = document.querySelectorAll(".message-close");
+const toastMessage = document.querySelectorAll(".toast-message");
 
 toggleThemeBtns.forEach(btn => {
     btn.addEventListener("click", function(){
@@ -23,6 +24,12 @@ toggleThemeBtns.forEach(btn => {
 })
 
 
+messeageClose.forEach((btn,i) => {
+    btn.addEventListener("click", function(){
+        toastMessage[i].style.display = "none";
+        
+    })
+})
 
 
 

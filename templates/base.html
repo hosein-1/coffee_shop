@@ -330,6 +330,14 @@
         {% include 'navbar.html' %}
     {% endblock navbar %}
 
+    {% include 'messages.html' %}
+    {% if messages %}
+   
+        {% for message in messages %}
+            
+            
+        {% endfor %}
+    {% endif %} 
     {% block header %}
         <main>
 
@@ -371,14 +379,10 @@
         </main>
 
     {% endblock header %}
-    {% if messages %}
-    <div class="container">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor %}
+    
         
     </div>
-    {% endif %} 
+    
 
     {% block body %}
     {% endblock body %}

@@ -1,0 +1,64 @@
+<div class="fixed z-20 top-20 right-2 md:top-32 md:right-7">
+
+    <div class="space-y-3">
+        {% if messages %}
+        {% for message in messages %}
+        
+        {% if message.tags == 'success' %} 
+        <div class="toast-message max-w-xs bg-teal-100 border border-teal-200 text-sm text-teal-800 rounded-lg" role="alert">
+          <div class="flex p-4">
+            {{ message }}
+      
+            <div class="ms-auto">
+              <button type="button" class="message-close inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-teal-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100">
+                <span class="sr-only">Close</span>
+                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+ 
+        {% if message.tags == 'ERROR' %}
+        <div class="toast-message max-w-xs bg-red-100 border border-red-200 text-sm text-red-800 rounded-lg" role="alert">
+          <div class="flex p-4">
+            {{ message }}
+      
+            <div class="ms-auto">
+              <button type="button" class="message-close inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-red-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100">
+                <span class="sr-only">Close</span>
+                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      
+        {% if message.tags == 'WARNING' %}
+        <div class="toast-message max-w-xs bg-yellow-100 border border-yellow-200 text-sm text-yellow-800 rounded-lg" role="alert">
+          <div class="flex p-4">
+            {{ message }}
+      
+            <div class="ms-auto">
+              <button type="button" class="message-close inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-yellow-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100">
+                <span class="sr-only">Close</span>
+                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        
+        {% endfor %}
+        {% endif %}
+      </div>
+</div>
