@@ -11,6 +11,8 @@ from django.utils.encoding import force_str
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import UpdateView
 from django.urls import reverse_lazy
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 from .models import CustomUser
 from .forms import CustomUserCreationForm, MyLoginForm, AccountForm
@@ -69,8 +71,9 @@ class ActivateAccountView(View):
             return HttpResponseBadRequest('Activation link is invalid!')
 
 
-class AccountActivationComplete(LoginRequiredMixin, TemplateView):
+class AccountActivationComplete(LoginRequiredMixin, SuccessMessageMixin, TemplateView):
     template_name = 'registration/account_activation_complete.html'
+    success_url = 'تبریک، حساب شما با موفقیت فعال شد.'
 
 
 class LoginView(View):
@@ -93,6 +96,7 @@ class LoginView(View):
             if user is not None:
 
                 login(request, user)
+                messages.success(request, 'ورود با موفقیت انجام شد.')
                 if request.GET.get('next'):
                     return redirect(request.GET['next'])
                 return redirect('products:products_list')
