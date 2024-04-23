@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block title %}سفارشات{% endblock %}
+
+{% block body %}
+{% block header %}
+{% endblock %}
+<section class="container mt-5 mb-10 md:mt-32 text-zinc-700 dark:text-white">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-4 mb-5">
+            <div class="text-center h-fit mt-9 p-4 px-0 [&>*:first-child]:mt-0 child:rounded-md [&>*:hover]:bg-orange-300 [&>*:hover]:dark:text-zinc-700 child:dark:text-white child:p-3 child:mt-5 child:block child:hover:cursor-pointer child:text-zinc-700">
+
+            
+                <a href="{% url 'orders:user_orders' %}" class="mt-0">تاریخچه سفارشات</a>
+                
+                <a href="#">اطلاعات کاربری</a>
+        
+                <a href="{% url 'products:products_list' %}">فروشگاه</a>
+
+                <form method="post" action="{% url 'accounts:logout' %}">
+                    {% csrf_token %}
+                    <input type="submit" value="خروج" class="hover:cursor-pointer">
+                </form>
+  
+             
+            </div>
+            <div class="md:col-span-3 p-3 md:pr-6 mt-6 space-y-2 md:border-r border-gray-300">
+                <span class="text-xl">سفارشات</span>
+                {% for order in orders %}
+                <div>
+                    <div class="flex gap-x-3 mt-4 pt-3 mb-2.5 border-t border-b-gray-300">
+                        <svg class="w-5 h-5">
+                            <use href="#tick"></use>
+                        </svg>
+                        <span>پرداخت شده</span>
+                    </div>
+                    
+                <div class="flex gap-x-5">
+     
+                    <p>{{ order.datatime_created }}</p>
+                    <p class="text-xs text-neutral-400">کد سفارش <span class="text-zinc-700 dark:text-white text-base">{{ order.zarinpal_ref_id }}</span></p>
+                    <p class="text-xs text-neutral-400">مبلغ <span class="text-zinc-700 dark:text-white text-base">{{ order.get_total_price|intcomma:False }}</span></p>
+                </div>
+               
+                   
+          
+                    <div class="flex overflow-x-scroll gap-x-2 mt-3">
+                        {% for item in order.items.all %}
+                        <img class="w-[100px] h-[100px]" src="{{ item.product.image.url }}" alt="">
+                        {% endfor %}
+                    </div>
+                 
+                {% endfor %}
+                </div>
+
+            </div>
+    
+        </div>
+
+    </section>
+    
+    {% include 'pagination.html' %}
+{% endblock %}

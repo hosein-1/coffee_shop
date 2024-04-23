@@ -112,7 +112,7 @@ class LoginView(View):
 class LogOutView(View):
     def post(self, request, *args, **kwargs):
         logout(request)
-        messages.success('خارج شدید.')
+        messages.success(request ,'خارج شدید.')
         return redirect('products:products_list')
 
 

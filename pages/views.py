@@ -16,6 +16,7 @@ class ContactUsView(TemplateView):
 class ContactUsCreateView(SuccessMessageMixin ,CreateView):
     model = Contact
     fields = ['full_name', 'phone_number', 'title', 'content']
+    template_name = 'pages/contact_us.html'
     success_url = reverse_lazy('pages:contact_us')
     success_message = 'نظر شما با موفقیت برای ما ارسال شد.'
 

@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.db.models import Prefetch
 from cart.cart import Cart
 from .forms import OrderForm
-from .models import OrderItem
+from .models import OrderItem, Order
 
 
 @login_required
@@ -40,3 +43,16 @@ def order_create_view(request):
             return redirect('payment:payment_process')
 
     return render(request, 'orders/order_create.html', {'form': order_form})
+
+
+class UserOrdersList(LoginRequiredMixin,ListView):
+    template_name = 'orders/user_orders.html'
+    context_object_name = 'orders'
+    paginate_by = 3
+    
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)\
+        .prefetch_related(Prefetch(
+            'items',
+             queryset=OrderItem.objects.select_related('product'))).all()\
+        .order_by('-datetime_created')

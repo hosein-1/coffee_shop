@@ -75,7 +75,7 @@ def payment_callback_sandbox(request):
 
             if payment_cod == 100:
                 order.is_paid = True
-                order.ref_id = data['RefID']
+                order.zarinpal_ref_id = data['RefID']
                 order.zarinpal_data = data
                 order.save()
                 messages.success(request, 'پرداخت شما موفق بود.')
