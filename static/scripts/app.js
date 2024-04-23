@@ -76,9 +76,9 @@ navCloseBtn.addEventListener("click", closeNav);
 
 cartCloseBtn.addEventListener("click", closeCart);
 
-function cartBoxRefresh(data){
+function cartBoxRefresh(data, urls){
     if(data.item_count == 0){
-        let htmlEmptyCartBox = `<div class="text-zinc-700">سبد خرید خالی است</div>`;
+        let htmlEmptyCartBox = `<div class="text-zinc-700 dark:text-white">سبد خرید خالی است</div>`;
         $('#desktop-cart-box').html(htmlEmptyCartBox);
         $('#mobile-cart-box').html(htmlEmptyCartBox);
         return;
@@ -87,7 +87,7 @@ function cartBoxRefresh(data){
     let htmlDesktopCartBox = `<!-- Cart Header -->
                 <div class="flex items-center justify-between font-DanaMedium text-xs tracking-tighter">
                     <span class="cart_count text-gray-300">${ data.item_count }</span>
-                    <a href="{% url 'cart:cart_detail' %}" class="flex items-center text-orange-300">مشاهده سبد خرید
+                    <a href="${urls.cart_detail}" class="flex items-center text-orange-300">مشاهده سبد خرید
                         <svg class="w-5 h-5">
                             <use href="#chevron-left">
                             </use>
@@ -160,14 +160,14 @@ function cartBoxRefresh(data){
                 </div>
             </div>
             <div>
-                <a href="#"
+                <a href="${urls.order_create}"
                     class="flex items-center justify-center w-[144px] h-14 text-white bg-teal-600 dark:bg-emerald-500 dark:hover:bg-emerald-600 hover:bg-teal-700 transition-colors rounded-xl tracking-tighter">ثبت
                     سفارش</a>
             </div>
         </div>`;
     htmlMobileCartBox += `</div><!-- Cart Footer -->
         <div class="flex items-end gap-x-4 mt-auto mb-8">
-        <a href="#"
+        <a href="${urls.order_create}"
         class="flex items-center justify-center w-28 h-11 text-white bg-teal-600 dark:bg-emerald-500 dark:hover:bg-emerald-600 hover:bg-teal-700 transition-colors rounded-xl tracking-tighter">ثبت
         سفارش</a>
         <div>

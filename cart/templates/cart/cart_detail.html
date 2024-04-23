@@ -173,7 +173,9 @@
                         $('#final-price').text(response.final_price);
                         $(`.product-item[data-item-id=${itemId}]`).remove();
                         $('empty-cart').remove();
-                        cartBoxRefresh(response);
+                        cartBoxRefresh(response, {
+                            cart_detail: "{% url 'cart:cart_detail' %}", 
+                            order_create: "{% url 'orders:order_create' %}"});
                         if(response.item_count == 0){
                             $('#empty-cart').removeClass('hidden');
                             $('#full-cart').addClass('hidden');

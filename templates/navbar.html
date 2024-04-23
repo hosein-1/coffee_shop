@@ -130,7 +130,7 @@
                                 </div>
                             </div>
                             {% else %}
-                            <div class="text-zinc-700">
+                            <div class="text-zinc-700 dark:text-white">
                                 <span>سبد خرید خالی است.</span>
                             </div>
                             {% endif %}
@@ -157,7 +157,7 @@
 
                 <!-- Login Link -->
                 {% if user.is_authenticated %}
-                <a href="#" class="flex items-center gap-x-2.5 tracking-tightest">
+                <a href="{% url 'orders:user_orders' %}" class="flex items-center gap-x-2.5 tracking-tightest">
                     <svg class="w-8 h-8 lg:w-9 lg:h-9">
                         <use href="#user-circle"></use>
                     </svg>
@@ -264,7 +264,7 @@
                 class="flex flex-col items-start gap-y-6 mt-8 py-8 px-2.5 border-t border-t-gray-100 dark:border-t-white/10 text-orange-300">
                 {% if user.is_authenticated %}
              
-                <a href="#" class="inline-flex items-center gap-x-2">
+                <a href="{% url 'orders:user_orders' %}" class="inline-flex items-center gap-x-2">
                     <svg class="w-5 h-5">
                         <use href="#user-circle"></use>
                     </svg>
@@ -386,7 +386,7 @@
 
             </div>
             {% else %}
-                <div class="text-zinc-700">
+                <div class="text-zinc-700 dark:text-white">
                     <span>سبد خرید خالی است.</span>
                 </div>
             {% endif %}

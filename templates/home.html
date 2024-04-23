@@ -91,7 +91,9 @@
             },
             success: function(data){
                 $('.cart-count').text(data.item_count);
-                cartBoxRefresh(data);
+                cartBoxRefresh(data, {
+                            cart_detail: "{% url 'cart:cart_detail' %}", 
+                            order_create: "{% url 'orders:order_create' %}"});
                 
      
             }
