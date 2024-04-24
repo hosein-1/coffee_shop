@@ -1183,8 +1183,8 @@ html.dark .services::after,
   margin-top: auto;
 }
 
-.mb-12 {
-  margin-bottom: 3rem;
+.ml-5 {
+  margin-left: 1.25rem;
 }
 
 .line-clamp-1 {
@@ -1516,8 +1516,9 @@ html.dark .services::after,
   width: 100vw;
 }
 
-.w-16 {
-  width: 4rem;
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .max-w-\[201px\] {
@@ -1974,16 +1975,6 @@ html.dark .services::after,
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
 }
 
-.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-.bg-zinc-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(82 82 91 / var(--tw-bg-opacity));
-}
-
 .bg-home-mobile {
   background-image: url(../images/headerBgMobile.webp);
 }
@@ -2121,6 +2112,10 @@ html.dark .services::after,
   padding-right: 0.625rem;
 }
 
+.pr-3 {
+  padding-right: 0.75rem;
+}
+
 .pr-4 {
   padding-right: 1rem;
 }
@@ -2143,10 +2138,6 @@ html.dark .services::after,
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pr-3 {
-  padding-right: 0.75rem;
 }
 
 .text-center {
@@ -2774,10 +2765,6 @@ html.dark .services::after,
     grid-column: span 3 / span 3;
   }
 
-  .md\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-
   .md\:my-0 {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -2986,10 +2973,6 @@ html.dark .services::after,
 
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .md\:flex-row {
-    flex-direction: row;
   }
 
   .md\:justify-between {

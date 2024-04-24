@@ -1,0 +1,32 @@
+<div class="fixed z-20 top-20 right-2 md:top-32 md:right-7">
+
+    <div class="space-y-3">
+ 
+        {% if form.errors %}
+        {% for field in form %}
+  
+             {% for error in field.errors %}
+
+        <div class="toast-message w-fit bg-yellow-100 border border-yellow-200 text-sm text-yellow-800 rounded-lg" role="alert">
+          <div class="flex justify-between p-4">
+            <div class="ms-auto">
+              <button type="button" class="message-close inline-flex flex-shrink-0 justify-center items-center size-5 rounded-lg text-yellow-800 opacity-50 hover:opacity-100 focus:outline-none focus:opacity-100">
+                <span class="sr-only">Close</span>
+                <svg class="ml-5 flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </button>
+            </div>
+        
+            {{field.label}}: {{ error|escape }}
+        
+          </div>
+        </div>
+        {% endfor %}
+
+        {% endfor %}
+  {% endif %}
+        
+      </div>
+</div>

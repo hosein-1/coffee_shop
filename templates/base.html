@@ -331,13 +331,7 @@
     {% endblock navbar %}
 
     {% include 'messages.html' %}
-    {% if messages %}
-   
-        {% for message in messages %}
-            
-            
-        {% endfor %}
-    {% endif %} 
+    {% include 'errors.html' %}
     {% block header %}
         <main>
 
