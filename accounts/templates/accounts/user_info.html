@@ -1,16 +1,73 @@
 {% extends "base.html" %}
 
-{% block title %}اطلاعات کاربری{% endblock %}
+{% block title %}پنل کاربری{% endblock %}
+{% block header %}
+{% endblock %}
+{% block body %}
+  <div class="container mt-5 mb-14 md:mt-36 text-zinc-700 dark:text-white"> 
+    <div class="grid grid-cols-1 md:grid-cols-4 md:gap-x-8">
+      <div class="text-center px-0 [&>*:first-child]:mt-0 child:rounded-md [&>*:hover]:bg-orange-300 [&>*:hover]:dark:text-zinc-700 child:dark:text-white child:p-3 child:mt-5 child:block child:hover:cursor-pointer child:text-zinc-700">
 
-{% block content %}
-  <h2>اطلاعات کاربری</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">ذخیره اطلاعات</button>
-  </form>
+            
+        <a href="{% url 'orders:user_orders' %}" class="mt-0">تاریخچه سفارشات</a>
+        
+        <a href="{% url 'accounts:account_info' %}">اطلاعات کاربری</a>
+        
+        <a href="{% url 'accounts:password_change' %}">تغییر رمز عبور </a>
+  
+        <a href="{% url 'products:products_list' %}">فروشگاه</a>
+  
+        <form method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+            <input type="submit" value="خروج" class="hover:cursor-pointer">
+        </form>
+  
+     
+    </div>
+      <div class="md:col-span-3 mt-6 md:mt-0 bg-white dark:bg-zinc-600 rounded-md p-5">
+        <h3 class="text-2xl">ویرایش اطلاعات</h3>
+        <form method="post" action="">
+          {% csrf_token %}
+          <div class="flex flex-col justify-between gap-x-3 mt-4">
 
-  {{ user.email }}
- {{ user.first_name }}
-{{ user.last_name }}
+            <div class="w-full md:text-xl mt-3">
+              <label for="">نام</label>
+              <div>
+                <input name="first_name" class="border border-gray-300 outline-none h-16 md:text-xl w-full rounded-md pr-3 dark:text-white dark:bg-zinc-600" type="text" placeholder="نام خود را وارد کنید" value="{% if user.first_name %} {{ user.first_name}} {% endif %}">
+  
+              </div>
+            </div>
+            <div class="w-full md:text-xl mt-3">
+              <label for="">نام خانوادگی</label>
+              <div>
+                <input name="last_name" class="border border-gray-300 outline-none h-16 md:text-xl w-full rounded-md pr-3 dark:text-white dark:bg-zinc-600" type="text" placeholder="نام خانوادگی خود را وارد کنید" value="{% if user.last_name %} {{ user.last_name}} {% endif %}">
+  
+              </div>
+            </div>
+            <div class="w-full md:text-xl mt-3">
+              <label for="">نام کاربری</label>
+              <div>
+                <input name="username" class="border border-gray-300 outline-none h-16 md:text-xl w-full rounded-md pr-3 dark:text-white dark:bg-zinc-600" type="text" placeholder="نام کاربری خود را وارد کنید" value="{% if user.username %} {{ user.username}} {% endif %}">
+  
+              </div>
+            </div>
+            <div class="w-full md:text-xl mt-3">
+              <label for="">ایمیل</label>
+              <div>
+                <input class="border border-gray-300 outline-none h-16 md:text-xl w-full rounded-md pr-3 dark:text-white dark:bg-zinc-600" type="email" readonly value="{% if user.email %} {{ user.email}} {% endif %}">
+  
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            
+            <input class="text-center mt-4 hover:cursor-pointer bg-orange-300 dark:text-zinc-700 w-1/2 p-3 rounded-full md:text-xl"
+              type="submit" value="ذخیره"/>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+
+  </div>
 {% endblock %}

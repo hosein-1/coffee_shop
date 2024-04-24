@@ -19,4 +19,4 @@ class MyLoginForm(AuthenticationForm):
 class AccountForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', ]
+        fields = ['first_name', 'last_name', 'username']

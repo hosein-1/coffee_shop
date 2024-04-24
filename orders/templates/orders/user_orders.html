@@ -6,14 +6,16 @@
 {% block body %}
 {% block header %}
 {% endblock %}
-<section class="container mt-5 mb-10 md:mt-32 text-zinc-700 dark:text-white">
+<section class="container mb-10 md:mt-32 text-zinc-700 dark:text-white">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-x-4 mb-5">
             <div class="text-center h-fit mt-9 p-4 px-0 [&>*:first-child]:mt-0 child:rounded-md [&>*:hover]:bg-orange-300 [&>*:hover]:dark:text-zinc-700 child:dark:text-white child:p-3 child:mt-5 child:block child:hover:cursor-pointer child:text-zinc-700">
 
             
                 <a href="{% url 'orders:user_orders' %}" class="mt-0">تاریخچه سفارشات</a>
                 
-                <a href="#">اطلاعات کاربری</a>
+                <a href="{% url 'accounts:account_info' %}">اطلاعات کاربری</a>
+
+                <a href="{% url 'accounts:password_change' %}">تغییر رمز عبور </a>
         
                 <a href="{% url 'products:products_list' %}">فروشگاه</a>
 

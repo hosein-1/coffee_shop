@@ -116,12 +116,13 @@ class LogOutView(View):
         return redirect('products:products_list')
 
 
-class AccountInfoView(LoginRequiredMixin, UpdateView):
+class AccountInfoView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = CustomUser
     form_class = AccountForm
     template_name = 'accounts/user_info.html'
     success_url = reverse_lazy('accounts:account_info')
-
+    success_message = 'اطلاعات با موفقیت تغییر یافت.'
+    
     def get_object(self, queryset=None):
         return self.request.user
 
