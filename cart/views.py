@@ -82,8 +82,11 @@ def remove_product(request):
         product = get_object_or_404(Product, id=item_id)
         cart = Cart(request)
         cart.remove(product)
+        products = Product.objects.filter(id__in=request.session['cart'])
+        cart_ser = ProductSerializer(products, many=True)
 
         context = {
+            'cart_ser': cart_ser.data,
             'item_count': len(cart),
             'cart_total_price': cart.get_total_price(),
             'final_price': cart.get_total_price(),

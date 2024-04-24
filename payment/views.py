@@ -68,7 +68,7 @@ def payment_callback_sandbox(request):
         response = requests.post(url='https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentVerification.json',
                                  data=json.dumps(request_data),
                                  headers=request_header)
-        print(response.json())
+
         if 'errors' not in response.json():
             data = response.json()
             payment_cod = data['Status']

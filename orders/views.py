@@ -20,7 +20,6 @@ def order_create_view(request):
         return redirect('products:products_list')
 
     if request.method == 'POST':
-        print(request.POST)
         order_form = OrderForm(request.POST)
 
         if order_form.is_valid():
